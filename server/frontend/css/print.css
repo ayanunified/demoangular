@@ -1,0 +1,70 @@
+@charset "utf-8";
+@charset "utf-8";
+/* CSS Document */
+
+
+@import url('font-awesome.min.css');
+ @import url(https://fonts.googleapis.com/css?family=Lato:400,100italic,100,300,300italic,400italic,700,900,700italic,900italic);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic);
+@font-face {
+	font-family: 'ralewayregular';
+	src: url('../fonts/raleway-regular-webfont.woff2') format('woff2'), url('../fonts/raleway-regular-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ralewaybold';
+	src: url('../fonts/raleway-bold-webfont.woff2') format('woff2'), url('../fonts/raleway-bold-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ralewaylight';
+	src: url('../fonts/raleway-light-webfont.woff2') format('woff2'), url('../fonts/raleway-light-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'ralewaysemibold';
+	src: url('../fonts/raleway-semibold-webfont.woff2') format('woff2'), url('../fonts/raleway-semibold-webfont.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+* {
+	outline: none !important;
+}
+@media print
+{
+    * {-webkit-print-color-adjust:exact;}
+}
+body {
+	font-family: 'Lato', sans-serif;
+	font-size: 17px;
+	color: #212121;
+}
+
+
+
+.heading{
+	    font-family: ralewayregular;
+    color: #f05123;
+    font-size: 32px;
+    text-align: center;
+    font-weight: normal;
+    text-align: center;
+    text-shadow: none;
+    padding-top: 10px;
+    margin-bottom: 0px;
+}
+
+
+.describe{
+	color: #050606;
+    font-family: ralewayregular;
+    font-size: 16px;
+    text-align: center;
+    padding-top: 20px;
+    font-weight: normal;
+    text-shadow: none;
+    margin: 0px;
+}

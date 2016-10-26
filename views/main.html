@@ -1,0 +1,179 @@
+  <div class="home-banner-container">
+    	<!-- Swiper -->
+    <div class="swiper-container home-banner">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" ng-repeat="c in slider">
+            	<div class="banner-image imageFit" data-imgLiquid-horizontalAlign="left" data-imgLiquid-verticalAlign="top"><img ng-src="{{c.img_path}}" alt=""></div>
+                <div class="banner-text">
+                	<div class="container">
+                    	<div class="txt-block">
+                        	<h2 ng-cloak>{{c.img_title}}</h2>
+                            <p class="lead" ng-cloak>{{c.img_desc}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination swiper-pagination-white"></div>
+    </div>
+    <div class="user-records">
+        <div class="record-block">active users  <ng-odometer class="odometer numbers" value=totcust ></ng-odometer></div>
+        <div class="record-block">patients reported <ng-odometer class="odometer numbers" value=totpatients></ng-odometer></div>
+    </div>
+    </div>
+
+<section class="content-block how-works white-bg">
+    <div class="container">
+        <div class="section-heading text-center">
+            <h2>how it <strong>works</strong></h2>
+        </div>
+        <div class="arch-cont">
+            <div class="arch-block signup">
+                <span class="bullet"></span>
+                <span class="number">1</span>
+                <h4>signup</h4>
+                <p>It’s fast and easy</p>
+            </div>
+            <div class="arch-block search">
+                <span class="bullet"></span>
+                <span class="number">2</span>
+                <h4>search</h4>
+                <p>Find your patient’s reputation</p>
+            </div>
+            <div class="arch-block report">
+                <span class="bullet"></span>
+                <span class="number">3</span>
+                <h4>report</h4>
+                <p>Warn others about a patient</p>
+            </div>
+            <div class="arch-block decision">
+                <span class="bullet"></span>
+                <span class="number">4</span>
+                <h4>make a decision</h4>
+                <p>You have the knowledge you need</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/.how-works-->
+
+<section class="content-block our-package green-bg">
+    <div class="container">
+        <div class="section-heading text-center">
+            <h2>Our <strong>Package</strong></h2>
+        </div>
+        <div class="price-table">
+            <div class="table-blocks">
+     
+ <div ng-show="current_status!='Inactive'&&current_status!='Active'" class="single-table" ng-repeat="sub in subsrciptions" ng-class="{'trial':$index==0,'monthly':$index==1,'yearly':$index==2,'lifetime':$index==3}">
+                            <div class="inner-table">
+                                <div class="data-info">
+                                    <h3>{{sub.type_name}}</h3>
+                                    <div class="price">{{sub.subheading}}</div>
+                                    <div class="info-list" ng-bind-html="sub.description">
+                                    {{sub.description}}
+                                    </div>
+                                    <hr>
+                                    <button type="button" ng-click="goPayment(sub.id,sub.duration,sub.price,sub.type_name);" class="btn btn-block">select</button>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                 <div ng-show="current_membership_id!=1 && current_status=='Active'" class="single-table" ng-repeat="sub in subsrciptions" ng-class="{'trial':$index==0,'monthly':$index==1,'yearly':$index==2,'lifetime':$index==3,'disabled':sub.id<current_membership_id}">
+                 
+                            <div class="inner-table">
+                                <div class="data-info">
+                                    <h3>{{sub.type_name}}</h3>
+                                    <div class="price">{{sub.subheading}}</div>
+                                    <div class="info-list" ng-bind-html="sub.description">
+                                        {{sub.description}}
+                                    </div>
+                                    <hr>
+                                    <button type="button" ng-click="goPayment(sub.id,sub.duration,sub.price,sub.type_name);" class="btn btn-block">select</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-show="current_membership_id==1 || current_status=='Inactive'" class="single-table" ng-repeat="sub in subsrciptions" ng-class="{'trial':$index==0,'monthly':$index==1,'yearly':$index==2,'lifetime':$index==3,'disabled':$index==0}">
+                            <div class="inner-table">
+                                <div class="data-info">
+                                    <h3>{{sub.type_name}}</h3>
+                                    <div class="price">{{sub.subheading}}</div>
+                                    <div class="info-list" ng-bind-html="sub.description">
+                                        {{sub.description}}
+                                    </div>
+                                    <hr>
+                                    <button type="button" ng-click="goPayment(sub.id,sub.duration,sub.price,sub.type_name);" class="btn btn-block">select</button>
+                                </div>
+                            </div>
+                        </div>   
+
+
+                <!--// Trial -->
+
+               <!-- <div class="single-table monthly">
+                    <div class="inner-table">
+                        <div class="data-info">
+                            <h3>Monthly</h3>
+                            <div class="price">$199</div>
+                            <div class="info-list">
+                                <ul>
+                                    <li>Report Patient</li>
+                                    <li>Search Patient</li>
+                                    <li>Account Settings</li>
+                                </ul>
+                            </div>
+                            <hr>
+                            <button type="button" class="btn btn-block">select</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-table yearly">
+                    <div class="inner-table">
+                        <div class="data-info">
+                            <h3>Yearly</h3>
+                            <div class="price">$2000</div>
+                            <div class="info-list">
+                                <ul>
+                                    <li>Report Patient</li>
+                                    <li>Search Patient</li>
+                                    <li>Account Settings</li>
+                                </ul>
+                            </div>
+                            <hr>
+                            <button type="button" class="btn btn-block">select</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-table lifetime">
+                    <div class="inner-table">
+                        <div class="data-info">
+                            <h3>Lifetime</h3>
+                            <div class="price">$8000</div>
+                            <div class="info-list">
+                                <ul>
+                                    <li>Report Patient</li>
+                                    <li>Search Patient</li>
+                                    <li>Account Settings</li>
+                                </ul>
+                            </div>
+                            <hr>
+                            <button type="button" class="btn btn-block">select</button>
+                        </div>
+                    </div>
+                </div>-->
+
+            </div>
+        </div>
+        <!--/.price-table-->
+
+        <div class="google-a" ng-if="package_top"><img ng-src="{{package_top}}" alt=""></img></div>
+    </div>
+</section>
+<!--/.our-package-->

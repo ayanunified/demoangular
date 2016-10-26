@@ -1,0 +1,602 @@
+    <div class="body-scontent" ng-controller="PatientCtrl" ng-init="init();">
+    	<div class="container">
+        	<div class="google-ad-980-120" ng-if="dashboard_top"><img ng-src="{{dashboard_top}}" alt=""></div>
+            <div class="patient-tabs">
+            	
+                <div id="PatientReports">
+                	<div class="l-cont-tab">
+                        <ul class="resp-tabs-list ver_1">
+                            <li ng-show="status">Search Patient</li>
+                            <li>Report Patient</li>
+                            <li>My Reported Patient</li>
+                        </ul>
+                        <div class="tab-left-a" ng-if="dashboard_lefttop"><img ng-src="{{dashboard_lefttop}}" alt=""></div>
+                        <div class="tab-left-a" ng-if="dashboard_leftbottom"><img ng-src="{{dashboard_leftbottom}}" alt=""></div>
+                    </div>
+                    <div class="resp-tabs-container ver_1" >
+                        
+                        <div class="tab-content" >
+                            <form ng-submit="searchpatients(user);" name="frm" novalidate>
+                                <a href = "" class="hell btn btn-default" ng-click="toggle('ssn')"  ng-show="!show">Search by SSN</a>
+                                <a href = "" class ="hell btn btn-default" ng-click="toggle('other')"  ng-show="show">Search by Other Details</a>
+                            <div class="tab-heading">Search Patient</div>
+                            <div class="form-row" ng-show="show">
+                                <div class="form-group">
+                                    <div class="row">
+                                    	
+                                           <div class="fake-number">
+                                                <div class="col-sm-2 forplacement"><input class="form-control value fp" type="text" ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" placeholder="SSN Number" tabindex="1" auto-next ng-model="user.ssn1" name="report_ssn1" ng-maxlength="3" ng-minlength="3" maxlength="3" ng-pattern="/^\d+$/" autocomplete="off" required/><span class="dashhiphen">-</span></div>
+                                                 <div class="col-sm-2 forplacement"><input class="form-control value fp" type="text" ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" placeholder="SSN Number" tabindex="2" auto-next ng-model="user.ssn2" name="report_ssn2"  ng-maxlength="2" ng-minlength="2" maxlength="2" autocomplete="off" required ng-pattern="/^\d+$/" /><span class="dashhiphen">-</span></div>
+                                                  <div class="col-sm-2 forplacement"><input class="form-control value"  type="text" placeholder="SSN Number" ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()"  tabindex="3" auto-next  ng-model="user.ssn3" name="report_ssn3"  ng-maxlength="4" ng-minlength="4" maxlength="4" autocomplete="off" required ng-pattern="/^\d+$/"/></div>
+                                                    
+                                                <span class="error" ng-show="frm.report_ssn1.$error.pattern || frm.report_ssn2.$error.pattern || frm.report_ssn3.$error.pattern">Provide valid ssn number</span>
+                                                  <span class="error" ng-show="frm.report_ssn1.$error.maxlength || frm.report_ssn2.$error.maxlength || frm.report_ssn3.$error.maxlength">Not a valid ssn number</span>
+                                                <!--<span class="error" ng-show="frm.report_ssn2.$error.pattern">Provide valid ssn number</span>
+                                                <span class="error" ng-show="frm.report_ssn3.$error.pattern">Provide valid ssn number</span>-->
+                                            </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<hr class="divider-or">-->
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <div class="row" ng-show="!show">
+                                    	<div class="col-sm-3">
+                                        	<input type="text" class="form-control" id="" placeholder="First Name" name="f_name" ng-model="user.first_name" ng-pattern="/^[a-zA-Z_ '\s]*$/" ng-trim="true" >
+                                        </div>
+                                        <div class="col-sm-3">
+                                        	<input type="text" class="form-control" id="" placeholder="Last Name" name="l_name" ng-model="user.last_name" ng-pattern="/^[a-zA-Z_ '\s]*$/" ng-trim="true" >
+                                        </div>
+                                        <div class="col-sm-3">
+                                        	<div class="input-group date pickdate" id="search_date">
+                                                <input type="text" class="form-control" placeholder="Birth Date" ng-model="user.dob" name="dateob"  ng-required = "(user.first_name || user.last_name) && dobb === undefined" readonly/>
+                                                <span class="input-group-addon">
+                                                    <span class="calendar-icon"></span>
+                                                </span>
+                                            </div>
+                                             <span class="error" ng-show="frm.dateob.$invalid">Please enter your date of birth</span>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-control">
+                                            	<div class="gender-select clearfix">
+                                                	<span class="pull-left" style="margin-top:12px">Gender</span>
+                                                    <div class="gender-radio pull-right" style="margin-top:10px">
+                                                    	<label><input type="radio" name="gndr" ng-model="user.gender" value = "MALE"  ng-required="!user.gender  && (user.first_name || user.last_name)"><span>M</span></label>
+                                                        <label><input type="radio" name="gndr" ng-model="user.gender" value = "FEMALE"   ng-required="!user.gender  && (user.first_name || user.last_name)"><span>F</span></label>
+                                                        
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                             <span class="error" ng-show="frm.gndr.$invalid">Please select gender</span> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                	<div class="row">
+                                    	<div class="col-sm-3 col-sm-push-6">
+                                        	<button type="reset" class="btn btn-block btn-lg btn-default no-transition" ng-click="reset()">reset</button>
+                                        </div>
+                                    	<div class="col-sm-3 col-sm-push-6">
+                                           
+                                        	<button type="submit" class="btn btn-block btn-lg btn-default no-transition"  ng-if="!show" ng-disabled="!(user.first_name || user.last_name) || dobb===undefined || !user.gender">search</button>
+                                            <button type="submit" class="btn btn-block btn-lg btn-default no-transition"  ng-if="show" ng-disabled="(!user.ssn1 || !user.ssn2 || !user.ssn3 || frm.report_ssn1.$invalid || frm.report_ssn2.$invalid || frm.report_ssn3.$invalid)">search</button>
+                                            
+                                            <!--<span class="error" ng-if="!user.first_name && !user.last_name && !user.dob && !user.ssn">Please enter some data to search</span>-->
+                                           
+                                        </div>
+                                         
+                                    </div>
+                                </div>
+                            </div>
+                            </form>
+                            
+                            <!--Search Result-->
+                            <table class="table responsive">
+                                        <thead>
+                                           
+                                            <tr><td ng-if="search_res.length==0">{{msg}}</td></tr>
+                                        </thead>
+                            </table>
+                            <div class="search-result" ng-show="search_res.length > 0">
+                            	<div class="tab-heading">Search Results</div>
+                                <div class="search-info">
+                                	<ul>
+                                    	<li>Total balance <span class="counter" ng-cloak ng-show="total_due">{{total_due}}</span></li>
+                                        <li>reported behavior <span class="counter" ng-cloak  ng-show="totalbehaviour">{{totalbehaviour}}</span></li>
+                                        <li>Number of clinic reported <span class="counter" ng-cloak ng-show="clinic_count">{{clinic_count}}</span></li>
+                                    </ul>
+                                </div>
+                                <div class="result-table block-table">
+                                	
+                                    <table class="table responsive" ts-wrapper>
+                                        <thead>
+                                           
+                                          
+                                        </thead>
+                                        <thead>
+                                        <tr>
+                                            <th width="25%" ng-click="togle(1)" style='cursor:pointer;' ng-show="search_res.length != 0" ts-criteria="name|lowercase" ><span class="thead-arrow" ></span>NAME-SSN</th>
+                                            <th width="17%" ng-click="togle(1)" style='cursor:pointer;' ng-show="search_res.length != 0" ts-criteria="balance_amount|parseFloat" ><span class="thead-arrow"></span>AMOUNT DUE</th>
+                                            <th width="30%" style='cursor:pointer;' ng-show="search_res.length != 0"><span class="" ></span>behaviour</th>
+                                            <th width="17%" ng-click="togle(1)" style='cursor:pointer;' ng-show="search_res.length != 0" ts-criteria="service_date|myDate" ><span class="thead-arrow" ></span>service date</th>
+                                            <th width="11%" class="text-center" style='cursor:pointer;' ng-show="search_res.length != 0"><span class="" ></span>Note</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        
+                                        <tr ts-repeat ts-hide-no-data ng-repeat="service in search_res.slice().reverse()  | hasSomeValue: service.note" ng-if="search_res.length > 0">
+                                            <td width="25%">{{service.name}}-{{service.ssn.substring(5,9)}}</td>
+                                           
+                                            <td width="17%" class="text-center">{{service.balance_amount}}</td>
+                                             <td width="30%">
+                                            	<div class="behavior-list">
+                                              
+                                                <b ng-repeat="cb in service.behavior">{{cb.label}}{{$last ? '' : ', '}}</b>
+                                                      <a popover   
+                                                                class="ellipsis-icon"
+                                                                data-toggle="popover"
+                                                                data-trigger="hover"
+                                                                data-placement="bottom"
+                                                                data-html="true"
+                                                                
+                                                                data-content="<div class='text-center' ><p style='color:black' ng-repeat='b in service.behavior' ng-bind='b.label'></p></div>">
+                                                                
+                                                                </a>
+                                                </div>
+                                                 
+                                            </td>
+                                            <td width="17%"  class="text-center">{{service.service_date}}</td>
+                                           
+                                             <td width="11%" class="text-center">
+                                        	<span popover data-toggle="popover" data-trigger="hover" data-placement="bottom" data-html="true" data-content="<div class='text-center'><p ng-bind='service.note'></p></div>" style="cursor:pointer"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                            <div class="edit-icon" ng-if="service.my_report == 1" title="Edit Patient" ng-click="edit_report(service.id,true);"></div>
+                                        </td>
+                                        </tr>
+                                        <!--<tr>
+                                            <td width="25%">John King-4444</td>
+                                            <td width="20%">$30000</td>
+                                            <td width="20%">04/02/2016</td>
+                                            <td width="35%">
+                                            	<div class="behavior-list">
+                                                	Drug Seeker, Late on Appointment, Take Temp Crown &amp; Never Return
+                                                    <span class="ellipsis-icon" data-toggle="popover" data-content="<div class='text-center'><p>Drug Seeker</p><p>Late on Appointment</p><p>Take Temp Crown &amp; Never Return</p><p>Ask Refund for perfect work</p><p>Give bad review on purpose</p></div>" data-html="true" data-placement="bottom" data-trigger="hover"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="25%">John King-4444</td>
+                                            <td width="20%">$30000</td>
+                                            <td width="20%">04/02/2016</td>
+                                            <td width="35%">
+                                            	<div class="behavior-list">
+                                                	Drug Seeker, Late on Appointment, Take Temp Crown &amp; Never Return
+                                                    <span class="ellipsis-icon" data-toggle="popover" data-content="<div class='text-center'><p>Drug Seeker</p><p>Late on Appointment</p><p>Take Temp Crown &amp; Never Return</p><p>Ask Refund for perfect work</p><p>Give bad review on purpose</p></div>" data-html="true" data-placement="bottom" data-trigger="hover"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="25%">John King-4444</td>
+                                            <td width="20%">$30000</td>
+                                            <td width="20%">04/02/2016</td>
+                                            <td width="35%">
+                                            	<div class="behavior-list">
+                                                	Drug Seeker, Late on Appointment, Take Temp Crown &amp; Never Return
+                                                    <span class="ellipsis-icon" data-toggle="popover" data-content="<div class='text-center'><p>Drug Seeker</p><p>Late on Appointment</p><p>Take Temp Crown &amp; Never Return</p><p>Ask Refund for perfect work</p><p>Give bad review on purpose</p></div>" data-html="true" data-placement="bottom" data-trigger="hover"></span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="25%">John King-4444</td>
+                                            <td width="20%">$30000</td>
+                                            <td width="20%">04/02/2016</td>
+                                            <td width="35%">
+                                            	<div class="behavior-list">
+                                                	Drug Seeker, Late on Appointment, Take Temp Crown &amp; Never Return
+                                                    <span class="ellipsis-icon" data-toggle="popover" data-content="<div class='text-center'><p>Drug Seeker</p><p>Late on Appointment</p><p>Take Temp Crown &amp; Never Return</p><p>Ask Refund for perfect work</p><p>Give bad review on purpose</p></div>" data-html="true" data-placement="bottom" data-trigger="hover"></span>
+                                                </div>
+                                            </td>
+                                        </tr>-->
+                                        </tbody>
+                                    </table>
+                                    <!--<a href="" class="load-more"><i class="fa fa-chevron-down"></i></a>-->
+                                </div>
+                            </div>
+                            <!--// Search Result-->
+                            
+                        </div>
+                        <!--/ Search Patient-->
+                        
+                        <div class="tab-content" ng-controller="reportCtrl" ng-init="init();">
+                            <form name="reportfrm" ng-submit="report_patients(report,reportfrm);" novalidate>
+                            <div class="tab-heading">report Patient</div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <div class="row">
+                                    	<!--<div class="col-sm-4">-->
+                                        	<div class="fake-number form-group clearfix">
+                                                
+                                             <div class="col-sm-2 forplacement"><input class="form-control value fp" ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()"  type="text"  placeholder="SSN Number" ng-minlength="3" ng-maxlength="3" tabindex="1" auto-next ng-model="report.ssn1" name="reportt_ssn1" maxlength="3" ng-pattern="/^\d+$/" autocomplete="off" required/><span class="dashhiphen">-</span></div>
+                                                 <div class="col-sm-2 forplacement"><input class="form-control value fp" ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()"  type="text"  placeholder="SSN Number" ng-minlength="2" ng-maxlength="2" tabindex="2" auto-next ng-model="report.ssn2" name="reportt_ssn2"  maxlength="2" autocomplete="off" required ng-pattern="/^\d+$/" /><span class="dashhiphen">-</span></div>
+                                                  <div class="col-sm-2 forplacement"><input class="form-control value" ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()"  type="text" placeholder="SSN Number" ng-minlength="4" ng-maxlength="4" tabindex="3" auto-next ng-model="report.ssn3" name="reportt_ssn3"  maxlength="4" autocomplete="off" required ng-pattern="/^\d+$/"/></div>
+                                                    
+                                        
+                                                <span class="error" ng-show="reportfrm.report_ssn1.$error.pattern || reportfrm.report_ssn2.$error.pattern || reportfrm.report_ssn3.$error.pattern">Provide valid ssn number</span>
+                                                
+                                                 <span class="error" ng-show=" reportfrm.$submitted && (reportfrm.reportt_ssn1.$invalid || reportfrm.reportt_ssn2.$invalid || reportfrm.reportt_ssn3.$invalid)">Please enter your ssn or check if the ssn is valid or not</span>
+                                        </div>
+                                       
+                                    <!--</div>-->
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                         <div class="col-sm-3">
+                                         
+                                        	<input type="text" class="form-control" id="" placeholder="First Name" name="report_fname" ng-model="report.first_name" ng-pattern="/^[a-zA-Z_ '\s]*$/" ng-trim="true" required>
+                                              <span class="error" ng-show=" reportfrm.$submitted && reportfrm.report_fname.$invalid && !reportfrm.report_fname.$error.pattern">Please enter your first name</span>
+                                              <span class="error" ng-show="reportfrm.report_fname.$error.pattern">Provide valid first name</span>
+                                        </div>
+                                        <div class="col-sm-3">
+                                        	<input type="text" class="form-control" id="" placeholder="Last Name" name="report_lname" ng-model="report.last_name" ng-pattern="/^[a-zA-Z_ '\s]*$/" ng-trim="true" required>
+                                             <span class="error " ng-show="reportfrm.$submitted && reportfrm.report_lname.$invalid && !reportfrm.report_lname.$error.pattern">Please enter your last name</span>
+                                             <span class="error" ng-show="reportfrm.report_lname.$error.pattern">Provide valid first name</span>
+                                        </div>
+                                    	<div class="col-sm-3">
+                                            
+                                            <div class="input-group date pickdate" id="bday">
+                                               
+                                                <input type="text" class="form-control" placeholder="Birth Date" name="report_dob" ng-model="report.dob" ng-required = "serv === undefined" readonly/>
+                                                <span class="input-group-addon">
+                                                    <span class="calendar-icon"></span>
+                                                </span>
+                                            </div>
+                                              <span class="error" ng-show="reportfrm.$submitted && reportfrm.report_dob.$invalid">Please enter your date of birth</span>
+                                        </div>
+                                        <div class="col-sm-3">
+                                        	<div class="form-control">
+                                            	<div class="gender-select clearfix">
+                                                	<span class="pull-left" style="margin-top:12px">Gender</span>
+                                                    <div class="gender-radio pull-right" style="margin-top:10px">
+                                                    	<label><input type="radio" name="gndr" ng-model="report.gender" value="MALE" ng-required="!report.gender"><span>M</span></label>
+                                                        <label><input type="radio" name="gndr" ng-model="report.gender" value="FEMALE" ng-required="!report.gender"><span>F</span></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <span class="error" ng-show="reportfrm.$submitted && reportfrm.gndr.$invalid">Please select gender</span>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/.form-row-->
+                           
+                            
+                            <!--<div class="form-row">
+                                <div class="form-group">
+                                    <div class="row">
+                                    	<div class="col-sm-4">
+                                        	<input type="text" class="form-control" id="" placeholder="Home Address" name="report_address" ng-model="report.address">
+                                            
+                                        </div>
+                                        <div class="col-sm-4">
+                                        	<input type="text" class="form-control" id="" placeholder="Apartment no" name="report_apno" ng-model="report.apt">
+                                           
+                                        </div>
+                                        <div class="col-sm-4">
+                                        	<input type="text" class="form-control" id="" placeholder="City"  name="report_city" ng-model="report.city" ng-pattern="/^[a-zA-Z\s]*$/" ng-trim="true">
+                                            <span class="error" ng-show="reportfrm.report_city.$error.pattern">Provide valid city</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                    	<div class="col-sm-4">
+                                        	<div class="custom-select">
+                                            	
+                                                 <select class="form-control" name="state" ng-model="report.state" >
+                                                   <option value = "">state</option>
+                                                    <option ng-repeat="d in states">{{d.name}}</option>
+                                                 </select>
+                                                    
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                        	<input type="text" class="form-control" id="" placeholder="Zipcode" name="report_zip" ng-model="report.zipcode" ng-pattern="/^\d{0,9}(\.\d{1,9})*$/">
+                                            <span class="error" ng-show="reportfrm.report_zip.$error.pattern" >Provide valid zip code</span>
+                                        </div>
+                                        <div class="col-sm-4">
+                                        	<input type="text" class="form-control" id="" placeholder="Homephone" name="report_hphn" ng-model="report.home_phone" ng-keyup="report.home_phone=phnformatter(report.home_phone);"  maxlength="18">
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>-->
+                            <!--/.form-row-->
+                           
+                            <hr>
+                            <div class="form-row">
+                            	<div class="form-group">
+                                	<p class="sub-heading"><b>Report Reason</b></p>
+                                    <!--<div class="custom-radio">
+                                    	<input type="radio" ng-model="report.report_reason" id="balance" value="Balance" name="reason" >
+                                        <label for="balance">Balance</label>
+                                        
+                                    </div>
+                                    <div class="custom-radio">
+                                    	<input type="radio" ng-model="report.report_reason"  id="behavior" value="Behavior" name="reason" >
+                                        <label for="behavior">Behavior</label>
+                                        
+                                    </div>
+                                    <div class="custom-radio">
+                                    	<input type="radio" ng-model="report.report_reason" id="both" value="Both" name="reason" >
+                                        <label for="both">Both</label>
+                                       
+                                    </div>
+                                      <span class="error" ng-show="reportfrm.reason.$invalid">Please select a reason</span>-->
+                                </div>
+                                <div class="form-group">
+                                	<div class="row">
+                                    	<div class="col-sm-4">
+                                          	<label class="control-label">Total Unpaid Balance of Patient</label>
+                                            <input type="text" class="form-control"  placeholder="Enter amount $" ng-model="report.balance_amount"  name="reportprice" ng-pattern="/^$|^[0-9\.]+$/">
+                                            <span class="error " ng-show="reportfrm.$submitted && reportfrm.reportprice.$error.pattern ">Valid price is required</span>
+                                        </div>
+                                        <div class="col-sm-4">
+                                         
+                                        	<label class="control-label">Patient's Unacceptable Behaviors</label>
+                                        	<div class="custom-select">
+													 
+                                                     <div ng-dropdown-multiselect options="example8data" name="behaviour" selected-model="report.example8model" checkboxes="true"></div>
+
+                                                     <!--<input type="text" ng-model="report.behaviorlists_id" value="{{example8model}}" required>-->
+                                                   
+                                                    <!--<select class="form-control" name="behaviour" ng-model="report.behaviorlists_id" required ng-options="i.id as (i.type_name.trim()) for i in behaviour"  ng-disabled="report.report_reason == 'Balance'">
+                                                  <option value = "">Behaviourlist</option>
+                                                 </select>-->
+                                                
+                                                </div>
+                                              <span class="error" ng-show="behaviourflag">Select a behaviour or amount</span>
+                                            </div>
+                                       
+                                            <div class="col-sm-4">
+                                             <label class="control-label">&nbsp;</label>
+                                            <div class="input-group date pickdate" id="ServiceDate" >
+                                               
+                                                <input type="text" class="form-control" placeholder="Service Date" name="report_date" ng-model="report.servicedate" ng-required="servdate2 === undefined" readonly/>
+                                                <span class="input-group-addon">
+                                                    <span class="calendar-icon"></span>
+                                                </span>
+                                            </div>
+                                            <span class="error" ng-show="reportfrm.$submitted && reportfrm.report_date.$invalid" >Select a service date</span>
+                                        </div>
+                                          
+                                        </div>
+                                          
+                                    </div>
+                                
+                                <div class="form-group">
+                                	<div class="row">
+                                    	<div class="col-sm-8">
+                                        	<textarea class="form-control" rows="6" placeholder="Short Note (Maximum 200 Characters)" ng-model="report.note" maxlength="200"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                	<div class="row">
+                                    	<div class="col-sm-4 col-sm-push-8">
+                                        	<button type='submit' class="btn btn-block btn-success btn-lg" >report</button>
+                                            <!--<button type='button' class="btn btn-block btn-success btn-lg" ng-show="edit" ng-click="upate_report(report,reportfrm)">update</button>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                           
+                            </form>
+                            <!--/.form-row-->
+                        </div>
+                        <!--/ Report Patient-->
+                        
+                        <div class="tab-content">
+                        	<div class="tab-heading" ng-controller="myreportsCtrl" ng-init="init();">{{changeStr}}</div>
+                            
+                            <!--//////// Update /////////-->
+                     
+                            <div class="update-report" ng-show="edit">
+                            	<a href="" class="close-report" title="Close Panel" ng-click="showupdate();toMyReport();"></a>
+                               <form name="myreportfrm" ng-submit="upate_report(myreport,myreportfrm);" novalidate>
+                                  <div class="form-row">
+                                    <div class="form-group">
+                                      <div class="row"> 
+                                        <div class="fake-number form-group clearfix">
+                                          <div class="col-sm-2 forplacement">
+                                            <input class="form-control fp" placeholder="SSN Number"  ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" ng-minlength="3" ng-maxlength="3" maxlength="3" type="text" tabindex="1" auto-next ng-model="myreport.ssn1" name="myreport_ssn1" ng-pattern="/^\d+$/" autocomplete="off" required/>
+                                            <span class="dashhiphen">-</span>
+                                            </div>
+                                          <div class="col-sm-2 forplacement">
+                                             <input class="form-control fp" placeholder="SSN Number"  ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" ng-minlength="2" ng-maxlength="2" maxlength="2" type="text" tabindex="2" auto-next ng-model="myreport.ssn2" name="myreport_ssn2" ng-pattern="/^\d+$/" autocomplete="off" required/>
+                                            <span class="dashhiphen">-</span>
+                                           </div>
+                                          <div class="col-sm-2 forplacement">
+                                            <input class="form-control" placeholder="SSN Number" type="text" ng-cut="$event.preventDefault()" ng-copy="$event.preventDefault()" ng-paste="$event.preventDefault()" ng-minlength="4" ng-maxlength="4" maxlength="4" tabindex="3" auto-next
+                                             ng-model="myreport.ssn3" name="myreport_ssn3" ng-pattern="/^\d+$/" autocomplete="off" required >
+                                          </div>
+                                          </div>
+                                         <span class="error" ng-show="myreportfrm.myreport_ssn1.$error.pattern || myreportfrm.myreport_ssn2.$error.pattern || myreportfrm.myreport_ssn3.$error.pattern">Provide valid ssn number</span>
+                                                
+                                        <span class="error" ng-show=" myreportfrm.$submitted && (myreportfrm.myreport_ssn1.$invalid || myreportfrm.myreport_ssn2.$invalid || myreportfrm.myreport_ssn3.$invalid)">Please enter your ssn or check if the ssn is valid or not</span>
+                                      </div>
+                                      <div class="form-group">
+                                        <div class="row">
+                                          <div class="col-sm-3">
+                                            <input class="form-control" id="" placeholder="First Name" name="myreport_fname" type="text" ng-model="myreport.first_name" ng-pattern="/^[a-zA-Z_ '\s]*$/" ng-trim="true" required>
+                                             <span class="error" ng-show=" myreportfrm.$submitted && myreportfrm.myreport_fname.$invalid && !reportfrm.myreport_fname.$error.pattern">Please enter your first name</span>
+                                              <span class="error" ng-show="myreportfrm.myreport_fname.$error.pattern">Provide valid first name</span>
+                                          </div>
+                                          <div class="col-sm-3">
+                                            <input class="form-control" id="" placeholder="Last Name" name="myreport_lname" type="text" ng-model="myreport.last_name" ng-pattern="/^[a-zA-Z_ '\s]*$/" ng-trim="true" required>
+                                             <span class="error" ng-show=" myreportfrm.$submitted && myreportfrm.myreport_lname.$invalid && !reportfrm.myreport_lname.$error.pattern">Please enter your first name</span>
+                                              <span class="error" ng-show="myreportfrm.myreport_lname.$error.pattern">Provide valid first name</span>
+                                          </div>
+                                          <div class="col-sm-3">
+                                            <div class="input-group date pickdate" id="bdayupdate">
+                                              <input class="form-control" placeholder="Birth Date" type="text" name="myreport_dob" ng-model="myreport.dob" ng-required = "servdate3 === undefined" readonly>
+                                               <span class="input-group-addon" style="">
+                                                 <span class="calendar-icon"></span>
+                                                  </span>
+                                            </div>
+                                             <span class="error" ng-show="myreportfrm.$submitted && myreportfrm.myreport_dob.$invalid">Please enter your date of birth</span>
+                                          </div>
+                                          <div class="col-sm-3">
+                                            <div class="form-control">
+                                              <div class="gender-select clearfix"> <span class="pull-left" style="margin-top:12px">Gender</span>
+                                                <div class="gender-radio pull-right" style="margin-top:10px">
+                                                  <label>
+                                                    <input name="gndrr"  type="radio" ng-model="myreport.gender" value="MALE" ng-required="!myreport.gender">
+                                                    <span>M</span></label>
+                                                  <label>
+                                                    <input name="gndrr" type="radio" ng-model="myreport.gender" value="FEMALE" ng-required="!myreport.gender">
+                                                    <span>F</span></label>
+                                                </div>
+                                              </div>
+                                            </div>
+                                             <span class="error" ng-show="myreportfrm.$submitted && myreportfrm.gndrr.$invalid">Please select gender</span>
+                                          </div>
+                                         </div>
+                                      </div>
+                                    </div>
+                                    <!--/.form-row--> 
+                                    <hr>
+                                    <div class="form-row">
+                                      <div class="form-group">
+                                        <p class="sub-heading"><b>Report Reason</b></p>
+                                      </div>
+                                      <div class="form-group">
+                                        <div class="row">
+                                          <div class="col-sm-4">
+                                            <label class="control-label">Total Unpaid Balance of Patient</label>
+                                            <input class="form-control" placeholder="Enter amount $" type="text" ng-model="myreport.balance_amount"  name="myreportprice" ng-pattern="/^$|^[0-9\.]+$/">
+                                          </div>
+                                          <div class="col-sm-4">
+                                            <label class="control-label">Patient's Unacceptable Behaviors</label>
+                                            <div class="custom-select">
+                                             <div ng-dropdown-multiselect options="myreport.example8data" name="behaviour" selected-model="myreport.example8model" checkboxes="true"></div>
+                                             </div>
+                                             <span class="error" ng-show="behaviourflagg">Select a behaviour or amount</span>
+                                          </div>
+                                          <div class="col-sm-4">
+                                            <label class="control-label">&nbsp;</label>
+                                            <div class="input-group date pickdate" id="ServiceDate2" >
+                                              <input class="form-control" placeholder="Service Date" type="text"  name="myreport_date" ng-model="myreport.servicedate" ng-required="servdate4 === undefined" readonly>
+                                               <span class="input-group-addon" style="">
+                                                 <span class="calendar-icon"></span>
+                                                  </span>
+                                              
+                                            </div>
+                                            <span class="error" ng-show="myreportfrm.$submitted && myreportfrm.myreport_date.$invalid" >Select a service date</span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <div class="row">
+                                          <div class="col-sm-8">
+                                            <textarea class="form-control" rows="6" placeholder="Short Note (Maximum 200 Characters)" ng-model="myreport.note" maxlength="200"></textarea>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <div class="row">
+                                          <div class="col-sm-4 col-sm-push-8">
+                                            <button type="submit" class="btn btn-block btn-success btn-lg">update</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </form>
+                            </div>
+                            <!--//////// Update /////////-->
+                             <table class="table responsive">
+                                    <thead ng-cloak>
+
+                                          <th ng-if="flaggg" >{{msgg}}</th>
+
+                            </thead>
+                            </table>
+                            <div class="result-table block-table" ng-show="!edit">
+                                <table   class="table responsive" ts-wrapper>
+                                   
+                                    <thead>
+                                    <tr>
+
+                                           <th  width="25%"  style='cursor:pointer;' ng-show="project.length" ts-criteria="name|lowercase"><span class="thead-arrow" ></span>NAME-SSN</th>
+                                            <th width="17%"  style='cursor:pointer;' ng-show="project.length" ts-criteria="balance_amount|parseFloat" ><span class="thead-arrow"></span>AMOUNT DUE</th>
+                                            <th width="30%"  ng-show="project.length" ><span class="" ></span>behaviour</th>
+                                            <th width="17%"  style='cursor:pointer;' ng-show="project.length" ts-criteria="service_date|myDate"><span class="thead-arrow" ></span>service date</th>
+                                            <th width="11%" class="text-center"  ng-show="project.length" ><span class="" ></span>Note</th>
+                                       
+                                     
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                       
+                                    <tr ts-repeat ts-hide-no-data  ng-repeat="reports in project.slice().reverse()  | hasSomeValue: reports.note" ng-if="project.length">
+                                        
+                                        <td width="25%">{{reports.name}}-{{reports.ssn.substring(5,9)}}</td>
+                                        
+                                        <td width="17%" class="text-center">{{reports.balance_amount}}</td>
+
+                                        <td width="30%">
+                                            <div class="behavior-list">
+                                                <b ng-repeat="cb in reports.behavior">{{cb.label}}{{$last ? '' : ', '}}</b>
+                                                
+                                                <!--<span class="ellipsis-icon" data-toggle="popover" data-content="<div class='text-center'><p ng-repeat='b in reports.behavior'>{{b.label}}</p></div>" data-html="true" data-placement="bottom" data-trigger="hover"></span>-->
+                                                 <!--<span class="ellipsis-icon" pop-over items="reports.behavior"></span>-->
+                                                 <!--<a href="" class="ellipsis-icon" pop-over items="reports.behavior"></a>-->
+                                                   <a popover   
+                                                                class="ellipsis-icon"
+                                                                data-toggle="popover"
+                                                                data-trigger="hover"
+                                                                data-placement="bottom"
+                                                                data-html="true"
+                                                                
+                                                                data-content="<div class='text-center' ><p style='color:black' ng-repeat='b in reports.behavior' ng-bind='b.label'></p></div>">
+                                                                
+                                                                </a>
+                                            </div>
+                                            
+                                        </td>
+
+                                        <td width="17%" class="text-center">{{reports.service_date}}</td>
+
+                                        <td width="11%" class="text-center">
+                                        	<span popover data-toggle="popover" data-trigger="hover" data-placement="bottom" data-html="true" data-content="<div class='text-center'><p ng-bind='reports.note'></p></div>" style="cursor:pointer"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                            <div class="edit-icon" title="Edit Patient" ng-click="edit_report(reports.id,false);updateReport();"></div>
+                                        </td>
+                                     
+                                 
+                                    </tr>
+                                 </tbody>
+                                </table>
+                                <!--<a href="" class="load-more"><i class="fa fa-chevron-down"></i></a>-->
+                            </div>
+                        </div>
+                        <!--/ My Reports-->
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Ads Mobile / Tablet -->
+            <div class="mob-tab-av clearfix">
+            	<div class="google-ad-980-120" ng-if="dashboard_top"><img ng-src="{{dashboard_top}}" alt=""></div>
+                <div class="tab-left-a" ng-if="dashboard_lefttop"><img ng-src="{{dashboard_lefttop}}" alt=""></div>
+                <div class="tab-left-a" ng-if="dashboard_leftbottom"><img ng-src="{{dashboard_leftbottom}}" alt=""></div>
+            </div>
+            <!-- // Ads Mobile / Tablet -->            
+        </div>
+    </div>
+    <!--/.body-scontent-->
+    

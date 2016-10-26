@@ -1,0 +1,45 @@
+<div class="body-scontent" ng-controller="serviceCtrl" ng-init="getservice();">
+  <div class="container">
+    <div class="cms-page">
+      <div class="service text-center">
+        <h2 class="cms-heading">service</h2>
+        <p data-ng-bind-html="heading"></p>
+        <div class="service-blocks">
+          <h3>service we offered</h3>
+          <div class="row">
+            <div class="col-sm-6" ng-repeat="d in content">
+              <div class="service-block serv-{{d.img}}">
+                <div class="icon-holder"></div>
+                <h4>{{d.title}}</h4>
+                <p data-ng-bind-html="d.content"></p>
+                <!--<span class="btn" ng-click="getservice();">view more</span>--> </div>
+            </div>
+            <!--<div class="col-sm-6">
+              <div class="service-block serv-02">
+                <div class="icon-holder"></div>
+                <h4>Doctor Help</h4>
+                <p>Printing and typesetting industry. Lorem  has been the industry's standard...</p>
+                <span class="btn">view more</span> </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="service-block serv-03">
+                <div class="icon-holder"></div>
+                <h4>Doctor Help</h4>
+                <p>Printing and typesetting industry. Lorem  has been the industry's standard...</p>
+                <span class="btn">view more</span> </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="service-block serv-04">
+                <div class="icon-holder"></div>
+                <h4>Doctor Help</h4>
+                <p>Printing and typesetting industry. Lorem  has been the industry's standard...</p>
+                <span class="btn">view more</span> </div>
+            </div>-->
+          </div>
+        </div>
+      </div>
+      <!--/.service--> 
+    </div>
+  </div>
+</div>
+<!--/.body-scontent-->

@@ -1,0 +1,44 @@
+<div class="body-scontent" ng-controller="aboutCtrl" ng-init="getabout();">
+  <div class="container">
+    <div class="cms-page">
+      <div class="about-us text-center">
+       <h2 class="cms-heading">about</h2>
+       <p ng-bind-html="content">
+         <!--<p>When patients don’t pay their medical bills, or have been caught trying to solicit drugs, they typically switch to a different practice that doesn’t know their history, and the cycle begins again. If medical clinics were able to share information about non-compliant patients, they would be able to avoid the problem in the first-place rather than trying to solve it after the fact with little chance of success.</p>
+        <p class="lead">We founded PSN based on the idea that doctors deserve to protect themselves too, the same way that patients have the right to review and select doctors based on their online reputation.</p>
+        <div class="nice-meet">
+          <h3>Nice to meet you</h3>
+          <p>After managing and owning a dental clinic for several years, we’ve seen the kind of damage that a few patients can cause to the practice’s finances and morale. We know how frustrating it is to have your employees spending their valuable time wrestling with patients who fail to pay for services they have already received. We also know that this problem is widespread across the industry. Patients repeat the same damaging behavior at new unsuspecting clinics that have no way to know that the patient has been repeatedly causing problems.</p>
+          <p>Information is power, and therefore we knew a shared network like PSN for medical providers to report and research undesirable patients would be the best way to combat the problem, to save you time and money.</p>
+        </div>-->
+        <div class="core-values">
+          <h3>Core values</h3>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="value-block">
+                <h4 class="text-red">Trust</h4>
+                <p data-ng-bind-html="t_content"></p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="value-block">
+                <h4 class="text-blue">Respect</h4>
+                <p data-ng-bind-html="r_content"></p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="value-block">
+                <h4 class="text-red">Passion</h4>
+                <p data-ng-bind-html="p_content"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <!--/.about-us--> 
+    </div>
+  </div>
+</div>
+<!--/.body-scontent-->

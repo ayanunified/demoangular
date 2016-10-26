@@ -1,0 +1,36 @@
+[18-May-2016 12:05:32 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Input' not found in /home2/unifiedw/public_html/prazm/app/Http/Controllers/FrontsController.php on line 36
+[18-May-2016 12:11:01 UTC] PHP Fatal error:  Cannot use Illuminate\Http\Request as Request because the name is already in use in /home2/unifiedw/public_html/prazm/app/Http/Controllers/FrontsController.php on line 13
+[18-May-2016 12:13:37 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Input' not found in /home2/unifiedw/public_html/prazm/app/Http/Controllers/FrontsController.php on line 36
+[18-May-2016 12:16:01 UTC] PHP Fatal error:  Class 'Input' not found in /home2/unifiedw/public_html/prazm/app/Http/Controllers/FrontsController.php on line 37
+[18-May-2016 12:18:34 UTC] PHP Fatal error:  Class 'Input' not found in /home2/unifiedw/public_html/prazm/app/Http/Controllers/FrontsController.php on line 37
+[18-May-2016 12:22:58 UTC] PHP Fatal error:  Class 'Input' not found in /home2/unifiedw/public_html/prazm/app/Http/Controllers/FrontsController.php on line 37
+[19-May-2016 05:26:39 UTC] PHP Fatal error:  Cannot call constructor in /home2/unifiedw/public_html/prazam/app/Http/Controllers/FrontsController.php on line 18
+[19-May-2016 05:26:46 UTC] PHP Fatal error:  Cannot call constructor in /home2/unifiedw/public_html/prazam/app/Http/Controllers/FrontsController.php on line 18
+[19-May-2016 08:06:30 UTC] PHP Parse error:  syntax error, unexpected ')', expecting ']' in /home2/unifiedw/public_html/prazam/app/Http/routes.php on line 23
+[19-May-2016 08:06:56 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home2/unifiedw/public_html/prazam/app/Http/routes.php on line 20
+[19-May-2016 08:07:02 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home2/unifiedw/public_html/prazam/app/Http/routes.php on line 20
+[19-May-2016 10:32:47 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Redirect' not found in /home2/unifiedw/public_html/prazam/app/Http/Controllers/FrontsController.php on line 53
+[19-May-2016 11:17:56 UTC] PHP Parse error:  syntax error, unexpected ''method'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in /home2/unifiedw/public_html/prazam/storage/framework/views/b35053524ce41cf688a05168189c42c6f55bff50.php on line 78
+[19-May-2016 11:18:06 UTC] PHP Parse error:  syntax error, unexpected ''method'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in /home2/unifiedw/public_html/prazam/storage/framework/views/b35053524ce41cf688a05168189c42c6f55bff50.php on line 78
+[19-May-2016 11:18:16 UTC] PHP Parse error:  syntax error, unexpected ''method'' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in /home2/unifiedw/public_html/prazam/storage/framework/views/b35053524ce41cf688a05168189c42c6f55bff50.php on line 78
+[19-May-2016 11:41:48 UTC] PHP Fatal error:  Class 'Illuminate\Auth\Middleware\Controller' not found in /home2/unifiedw/public_html/prazam/app/Http/Controllers/FrontsController.php on line 22
+[19-May-2016 11:41:49 UTC] PHP Fatal error:  Class 'Illuminate\Auth\Middleware\Controller' not found in /home2/unifiedw/public_html/prazam/app/Http/Controllers/FrontsController.php on line 22
+[19-May-2016 11:54:32 UTC] PHP Parse error:  syntax error, unexpected '/' in /home2/unifiedw/public_html/prazam/app/Http/Controllers/FrontsController.php on line 60
+[20-May-2016 12:43:44 UTC] PHP Fatal error:  Class 'App\Http\Controllers\URL' not found in /home2/unifiedw/public_html/prazam/app/Http/Controllers/FrontsController.php on line 67
+[23-May-2016 08:55:59 UTC] PHP Fatal error:  Class 'Input' not found in /home2/unifiedw/public_html/prazam/storage/framework/views/b35053524ce41cf688a05168189c42c6f55bff50.php on line 81
+[23-May-2016 08:56:13 UTC] PHP Fatal error:  Class 'Input' not found in /home2/unifiedw/public_html/prazam/storage/framework/views/b35053524ce41cf688a05168189c42c6f55bff50.php on line 81
+[23-May-2016 08:58:38 UTC] PHP Parse error:  syntax error, unexpected ';' in /home2/unifiedw/public_html/prazam/storage/framework/views/b35053524ce41cf688a05168189c42c6f55bff50.php on line 81
+[23-May-2016 08:58:54 UTC] PHP Fatal error:  Class 'Input' not found in /home2/unifiedw/public_html/prazam/storage/framework/views/b35053524ce41cf688a05168189c42c6f55bff50.php on line 81
+[24-May-2016 06:24:24 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Cookie' not found in /home2/unifiedw/public_html/prazam/app/Http/Controllers/FrontsController.php on line 59
+[24-May-2016 06:26:01 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Cookie' not found in /home2/unifiedw/public_html/prazam/app/Http/Controllers/FrontsController.php on line 59
+[24-May-2016 06:26:43 UTC] PHP Fatal error:  Class 'App\Http\Controllers\Cookie' not found in /home2/unifiedw/public_html/prazam/app/Http/Controllers/FrontsController.php on line 59
+[24-May-2016 06:54:20 UTC] PHP Parse error:  syntax error, unexpected ')' in /home2/unifiedw/public_html/prazam/storage/framework/views/b35053524ce41cf688a05168189c42c6f55bff50.php on line 91
+[24-May-2016 06:54:55 UTC] PHP Parse error:  syntax error, unexpected ')' in /home2/unifiedw/public_html/prazam/storage/framework/views/b35053524ce41cf688a05168189c42c6f55bff50.php on line 91
+[24-May-2016 10:05:57 UTC] PHP Fatal error:  Cannot redeclare class CreatePagesTable in /home2/unifiedw/public_html/prazam/database/migrations/2016_05_24_075150_create_pages_table.php on line 36
+[24-May-2016 10:07:59 UTC] PHP Fatal error:  Cannot redeclare class CreatePagesTable in /home2/unifiedw/public_html/prazam/database/migrations/2016_05_24_075150_create_pages_table.php on line 36
+[24-May-2016 10:13:29 UTC] PHP Fatal error:  Cannot redeclare class CreatePagesTable in /home2/unifiedw/public_html/prazam/database/migrations/2016_05_24_075150_create_pages_table.php on line 36
+[24-May-2016 11:00:12 UTC] PHP Fatal error:  Cannot redeclare class CreatePagesTable in /home2/unifiedw/public_html/prazam/database/migrations/2016_05_24_075150_create_pages_table.php on line 36
+[24-May-2016 11:02:08 UTC] PHP Fatal error:  Cannot redeclare class CreatePagesTable in /home2/unifiedw/public_html/prazam/database/migrations/2016_05_24_075832_create_pages_table.php on line 36
+[24-May-2016 11:03:10 UTC] PHP Fatal error:  Cannot redeclare class CreatePagesTable in /home2/unifiedw/public_html/prazam/database/migrations/2016_05_24_081009_create_pages_table.php on line 36
+[24-May-2016 11:04:09 UTC] PHP Fatal error:  Cannot redeclare class CreatePagesTable in /home2/unifiedw/public_html/prazam/database/migrations/2016_05_24_110409_create_pages_table.php on line 36
+[25-May-2016 05:45:13 UTC] PHP Parse error:  syntax error, unexpected '<' in /home2/unifiedw/public_html/prazam/storage/framework/views/657a19ee84fea9c6c0863e72e75596523cf087e7.php on line 58

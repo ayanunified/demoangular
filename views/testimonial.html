@@ -1,0 +1,59 @@
+<div class="body-scontent" ng-controller="testimonialCtrl" ng-init="gettesti();">
+  <div class="container">
+    <div class="cms-page">
+      <div class="testimonial text-center">
+        <h2 class="cms-heading">testimonials</h2>
+        <div class="testimonial-blocks">
+          <h3 data-ng-bind-html="heading"></h3>
+          <div class="grid">
+            <div class="grid-sizer"></div>
+            <div class="grid-item" ng-repeat="d in testi">
+              <blockquote class="testi-block">
+                <div class="author-thumb" style="background-image:url({{d.user_img}})"></div>
+                <p data-ng-bind-html="d.content"></p>
+                <footer> <cite data-ng-bind-html="d.title"></cite> </footer>
+              </blockquote>
+            </div>
+            <!--<div class="grid-item">
+              <blockquote class="testi-block">
+                <div class="author-thumb imageFit"><img src="images/author-02.jpg" alt=""></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in eros vehicula, dapibus felis non, feugiat ante. Morbi commodo enim id scelerisque cursus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque lorem est, interdum quis risus nec, cursus mollis neque. Aenean ultrices mauris ex, eget vulputate mi finibus finibus.</p>
+                <footer> <cite>Thomson, USA</cite> </footer>
+              </blockquote>
+            </div>
+            <div class="grid-item">
+              <blockquote class="testi-block">
+                <div class="author-thumb imageFit"></div>
+                <p>PSN is designed to ensure this never happens again. A patient can be reported for failure to pay their medical bills, and this information can be found in the database by other practices.</p>
+                <footer> <cite>Thomson, USA</cite> </footer>
+              </blockquote>
+            </div>
+            <div class="grid-item">
+              <blockquote class="testi-block">
+                <div class="author-thumb imageFit"><img src="images/author-04.jpg" alt=""></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in eros vehicula, dapibus felis non, feugiat ante. Morbi commodo enim id scelerisque cursus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque lorem est, interdum quis risus nec, cursus mollis neque. Aenean ultrices mauris.</p>
+                <footer> <cite>Thomson, USA</cite> </footer>
+              </blockquote>
+            </div>
+            <div class="grid-item">
+              <blockquote class="testi-block">
+                <div class="author-thumb imageFit"><img src="images/author-05.jpg" alt=""></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in eros vehicula, dapibus felis non, feugiat ante. Morbi commodo enim id scelerisque cursus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque lorem est, interdum quis risus nec, cursus mollis neque. Aenean ultrices mauris ex.</p>
+                <footer> <cite>Thomson, USA</cite> </footer>
+              </blockquote>
+            </div>
+            <div class="grid-item">
+              <blockquote class="testi-block">
+                <div class="author-thumb imageFit"><img src="images/author-06.jpg" alt=""></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum in eros vehicula, dapibus felis non, feugiat ante. Morbi commodo enim id scelerisque cursus. Cum sociis natoque penatibus et magnis dis.</p>
+                <footer> <cite>Thomson, USA</cite> </footer>
+              </blockquote>
+            </div>-->
+          </div>
+        </div>
+      </div>
+      <!--/.service--> 
+    </div>
+  </div>
+</div>
+<!--/.body-scontent-->

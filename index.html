@@ -1,0 +1,842 @@
+<!doctype html>
+<html>
+<title>PSN</title>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
+    <!--<base href="/index.html">-->
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="bower_components/Swiper/dist/css/swiper.css" />
+    <link rel="stylesheet" href="styles/loading-bar.min.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery-ui.min.css" />
+    <link href="styles/style.css" rel="stylesheet">
+    <link href="styles/responsive.css" rel="stylesheet">
+     <!--<link href="styles/tabs.css" rel="stylesheet">-->
+    <link href="styles/dev.css" rel="stylesheet">
+      <link href="styles/loader.css" rel="stylesheet">
+
+
+
+    <!-- endbuild -->
+</head>
+
+<body ng-app="psnApp">
+
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <div id="page" ng-controller ="indexcontroller" ng-init="init();">
+
+        <header class="site-header">
+
+
+            <div class="header-top">
+                <div class="container">
+                    <div class="header-social">
+                        <ul class="clearfix">
+                            <li><a href="" title="Facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="" title="Youtube"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="header-bottom">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                        <a class="navbar-brand" href="" ng-click="got_to_home();"><img src="images/psn-logo.png" alt="" class="img-responsive"></a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li ng-class="{true:'active',false:''}[e]"><a href=""  ng-click="story();">Story</a></li>
+                            <li ng-class="{true:'active',false:''}[b]"><a href="" ng-click="about();">About</a></li>
+                            <li ng-class="{true:'active',false:''}[d]"><a href="" ng-click="service();">Service</a></li>
+                            <li ng-class="{true:'active',false:''}[a]"><a href="" ng-click="testi();">Testimonials</a></li>
+                            <li ng-class="{true:'active',false:''}[c]"><a href="" ng-click="faq();">FAQ</a></li>
+                        </ul> 
+                       
+
+                        <ul class="nav navbar-nav navbar-right loginheader" ng-class="{1:'showloginheader',0:''}[is_angular_loaded]">
+                            <li ng-cloak ng-if="loggedin == 0 || loggedin == null"><a href="" data-toggle="modal" data-target=".LoginModal">Login</a></li>
+                            <li ng-cloak ng-if="loggedin == 0 || loggedin == null"><a href="" data-toggle="modal" data-target=".SignupModal">Signup</a></li>
+                            <li class="dropdown" ng-cloak  ng-if="loggedin == 1">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown">{{getselected()}}<i class="fa fa-angle-down"></i></a>
+                                <ul class="dropdown-menu" ng-cloak>
+                                
+                                    <li  ng-repeat="a in menu_array" ng-if="!a.selected" ng-click="chooseselect($index)"><a href="{{a.url}}" ng-cloak>{{a.name}}</a></li>
+
+                                  
+                                </ul>
+                            </li>
+                            <li ng-cloak  ng-if="loggedin == 1"><a href=""  ng-click="logout();">Logout</a></li>
+                        </ul>
+                       
+                    
+                    </div>
+                    <!--/.nav-collapse -->
+                </div>
+            </div>
+        </header>
+        <!--/.site-header-->
+
+		<div class="min-content">
+            <ng-view id="contentt">
+                    
+    
+            </ng-view>
+		</div>
+
+        <footer class="site-footer">
+            <div class="scroll-top"></div>
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="foot-col col-sm-3">
+                            <div class="footer-block">
+                                <h4>Quick Links</h4>
+                                <div class="footer-menu">
+                                    <ul>
+                                        <li><a href="" ng-click="story();">Story</a></li>
+                                        <li><a href="" ng-click="about();">About</a></li>
+                                        <li><a href="" ng-click="service();">Service</a></li>
+                                        <li><a href="" ng-click="testi();">Testimonials</a></li>
+                                        <li><a href="" ng-click = " faq();">FAQ</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="foot-col col-sm-5">
+                            <div class="footer-block">
+                                <h4>Get in touch</h4>
+                                <div class="footer-info">
+                                    <p ng-cloak>{{get_in_touch_text}}</p>
+                                    <ul>
+                                        <li ng-cloak><i class="fa fa-map-marker" ></i> {{contact_address}}</li>
+                                        <li ng-cloak><a href=""><i class="fa fa-mobile"></i> {{contact_no}}</a></li>
+                                        <li ng-cloak><a href="mailto: {{contact_mail}}"><i class="fa fa-envelope-o" ng-cloak></i> {{contact_mail}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        						
+                        <div class="foot-col col-sm-4">
+                            <div class="footer-block">
+                                <h4>Email Subscribe</h4>
+                                <div class="footer-newsletter">
+                                    <p ng-cloak>{{email_subscribe_text}}</p>
+                                    <!-- Begin MailChimp Signup Form -->
+                                    <div id="mc_embed_signup">
+                                        <form action="//unifiedinfotech.us14.list-manage.com/subscribe/post?u=2bee52c959b37a87e4aa9370e&amp;id=1040ded758" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate form-inline" target="_blank" novalidate>
+                                            <div id="mc_embed_signup_scroll" class="input-group">
+                                            <input type="email" value="" name="EMAIL" class="email form-control" id="mce-EMAIL" placeholder="Enter email address" required>
+                                            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                            <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_2bee52c959b37a87e4aa9370e_1040ded758" tabindex="-1" value=""></div>
+                                            <span class="input-group-btn">
+                                                <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-default">
+                                            </span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!--End mc_embed_signup-->
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="copyright text-center" ng-cloak>{{footer_disclaimer}}</div>
+                </div>
+            </div>
+        </footer>
+
+
+        <!--alertpopup-->
+
+              <div class="modal log-modal fade msg-modal alertmodal" id="" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" data-backdrop="static" data-keyboard="false">
+              <div class="modal-dialog" role="document" id="loggin">
+                <div class="modal-content">
+                     <div class="modal-header">
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                        <!--<h4 class="modal-title" id="LoginModalLabel"></h4>-->
+                    </div>
+                   <!-- <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" >PSN</h4>
+                    </div>-->
+                    <div class="modal-body text-center clearfix">
+                          <div class="modal-logo"><img src="images/psn-logo.png" alt="" class="img-responsive"></div>
+                        <div ng-class="{'successalert':class,'erroralert':!class}">
+                      <span ng-cloak>{{alertmsg}}</span>
+                        </div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Close</span></button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--alertpopup-->
+
+              <div class="modal log-modal fade msg-modal alertmodalsignup" id="" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" data-backdrop="static" data-keyboard="false">
+              <div class="modal-dialog" role="document" id="loggin">
+                <div class="modal-content">
+                     <div class="modal-header">
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                        <!--<h4 class="modal-title" id="LoginModalLabel"></h4>-->
+                    </div>
+                   <!-- <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" >PSN</h4>
+                    </div>-->
+                    <div class="modal-body text-center clearfix">
+                          <div class="modal-logo"><img src="images/psn-logo.png" alt="" class="img-responsive"></div>
+                        <div ng-class="{'successalert':class,'erroralert':!class}">
+                      <span ng-cloak>Registration is Successfull.Please verify your email account to login</span>
+                        </div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Close</span></button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+
+
+         <!--alertpopup-->
+
+              <div class="modal log-modal fade msg-modal alertmodalemailverify" id="" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" data-backdrop="static" data-keyboard="false">
+              <div class="modal-dialog" role="document" id="loggin">
+                <div class="modal-content">
+                     <div class="modal-header">
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                        <!--<h4 class="modal-title" id="LoginModalLabel"></h4>-->
+                    </div>
+                   <!-- <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" >PSN</h4>
+                    </div>-->
+                    <div class="modal-body text-center clearfix">
+                          <div class="modal-logo"><img src="images/psn-logo.png" alt="" class="img-responsive"></div>
+                        <div ng-class="{'successalert':class,'erroralert':!class}">
+                      <span ng-cloak>{{alertmsg}}</span>
+                        </div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Close</span></button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+
+         
+         <!--alertpopup-->
+
+              <div class="modal log-modal fade msg-modal alertmodalsession" id="" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" data-backdrop="static" data-keyboard="false">
+              <div class="modal-dialog" role="document" id="loggin">
+                <div class="modal-content">
+                     <div class="modal-header">
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                        <!--<h4 class="modal-title" id="LoginModalLabel"></h4>-->
+                    </div>
+                   <!-- <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" >PSN</h4>
+                    </div>-->
+                    <div class="modal-body text-center clearfix">
+                          <div class="modal-logo"><img src="images/psn-logo.png" alt="" class="img-responsive"></div>
+                        <div ng-class="{'successalert':class,'erroralert':!class}">
+                      <span ng-cloak>Your session is timedout</span>
+                        </div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Close</span></button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+
+                <!-------- avishek 10-08-2016 ---------->
+
+                <div class="modal log-modal fade msg-modal alertmodalmembership" id="" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" data-backdrop="static" data-keyboard="false">
+              <div class="modal-dialog" role="document" id="loggin">
+                <div class="modal-content">
+                     <div class="modal-header">
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                        <!--<h4 class="modal-title" id="LoginModalLabel"></h4>-->
+                    </div>
+                   <!-- <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" >PSN</h4>
+                    </div>-->
+                    <div class="modal-body text-center clearfix">
+                          <div class="modal-logo"><img src="images/psn-logo.png" alt="" class="img-responsive"></div>
+                        <div ng-class="{'successalert':class,'erroralert':!class}">
+                      <span ng-cloak>You have to Login to purchase this Membership Plan</span>
+                        </div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Close</span></button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+        <div class="modal log-modal fade msg-modal alertmodalpaymenterror" id="" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" data-backdrop="static" data-keyboard="false">
+              <div class="modal-dialog" role="document" id="loggin">
+                <div class="modal-content">
+                     <div class="modal-header">
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                        <!--<h4 class="modal-title" id="LoginModalLabel"></h4>-->
+                    </div>
+                   <!-- <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" >PSN</h4>
+                    </div>-->
+                    <div class="modal-body text-center clearfix">
+                          <div class="modal-logo"><img src="images/psn-logo.png" alt="" class="img-responsive"></div>
+                        <div ng-class="{'successalert':class,'erroralert':!class}">
+                      <span ng-cloak>{{alertMsg}}</span>
+                        </div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Close</span></button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal log-modal fade msg-modal alertmodalpayment" id="" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" data-backdrop="static" data-keyboard="false">
+              <div class="modal-dialog" role="document" id="loggin">
+                <div class="modal-content">
+                     <div class="modal-header">
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                        <!--<h4 class="modal-title" id="LoginModalLabel"></h4>-->
+                    </div>
+                   <!-- <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" >PSN</h4>
+                    </div>-->
+                    <div class="modal-body text-center clearfix">
+                          <div class="modal-logo"><img src="images/psn-logo.png" alt="" class="img-responsive"></div>
+                        <div ng-class="{'successalert':'true'}">
+                      <span ng-cloak>{{alertMsg}}</span>
+                        </div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Close</span></button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal log-modal fade msg-modal alertmodalmembershipnot" id="" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" data-backdrop="static" data-keyboard="false">
+              <div class="modal-dialog" role="document" id="loggin">
+                <div class="modal-content">
+                     <div class="modal-header">
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                        <!--<h4 class="modal-title" id="LoginModalLabel"></h4>-->
+                    </div>
+                   <!-- <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" >PSN</h4>
+                    </div>-->
+                    <div class="modal-body text-center clearfix">
+                          <div class="modal-logo"><img src="images/psn-logo.png" alt="" class="img-responsive"></div>
+                        <div ng-class="{'successalert':class,'erroralert':!class}">
+                      <span ng-cloak>You can't Downgrade from your current package</span>
+                        </div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Close</span></button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+
+                <!---------------->
+
+           <!--alertpopup-->
+
+              <div class="modal log-modal fade msg-modal alertmodalforgot" id="" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" data-backdrop="static" data-keyboard="false">
+              <div class="modal-dialog" role="document" id="loggin">
+                <div class="modal-content">
+                     <div class="modal-header">
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                        <!--<h4 class="modal-title" id="LoginModalLabel"></h4>-->
+                    </div>
+                   <!-- <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" >PSN</h4>
+                    </div>-->
+                    <div class="modal-body text-center clearfix">
+                          <div class="modal-logo"><img src="images/psn-logo.png" alt="" class="img-responsive"></div>
+                        <div ng-class="{'successalert':class,'erroralert':!class}">
+                      <span ng-cloak>{{alertmsg}}</span>
+                        </div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Close</span></button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+           <!--alertpopup-->
+
+              <div class="modal log-modal fade msg-modal alertmodalprofile" id="" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" data-backdrop="static" data-keyboard="false">
+              <div class="modal-dialog" role="document" id="loggin">
+                <div class="modal-content">
+                     <div class="modal-header">
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                        <!--<h4 class="modal-title" id="LoginModalLabel"></h4>-->
+                    </div>
+                   <!-- <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" >PSN</h4>
+                    </div>-->
+                    <div class="modal-body text-center clearfix">
+                    <div class="modal-logo"><img src="images/psn-logo.png" alt="" class="img-responsive"></div>
+                        <div ng-class="{'successalert':class,'erroralert':!class}">
+                      <span ng-cloak>{{alertmsg}}</span>
+                        </div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Close</span></button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+
+
+           <!--alertpopup-->
+
+              <div class="modal log-modal fade msg-modal alertmodalreport" id="" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" data-backdrop="static" data-keyboard="false">
+              <div class="modal-dialog" role="document" id="loggin">
+                <div class="modal-content">
+                     <div class="modal-header">
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                        <!--<h4 class="modal-title" id="LoginModalLabel"></h4>-->
+                    </div>
+                   <!-- <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" >PSN</h4>
+                    </div>-->
+                    <div class="modal-body text-center clearfix">
+                    <div class="modal-logo"><img src="images/psn-logo.png" alt="" class="img-responsive"></div>
+                        <div ng-class="{'successalert':class,'erroralert':!class}">
+                      <span ng-cloak>{{alertmsg}}</span>
+                        </div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Close</span></button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+
+           <!--alertpopup-->
+
+              <div class="modal log-modal fade msg-modal alertmodalupdate" id="" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" data-backdrop="static" data-keyboard="false">
+              <div class="modal-dialog" role="document" id="loggin">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                        <!--<h4 class="modal-title" id="LoginModalLabel"></h4>-->
+                    </div>
+                   <!-- <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" >PSN</h4>
+                    </div>-->
+                    <div class="modal-body text-center clearfix">
+                          <div class="modal-logo"><img src="images/psn-logo.png" alt="" class="img-responsive"></div>
+                        <div ng-class="{'successalert':class,'erroralert':!class}">
+                      <span ng-cloak>{{alertmsg}}</span>
+                        </div>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">Close</span></button>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+
+        <!--loginmodal-->
+        <div class="modal fade log-modal LoginModal" id="" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" data-backdrop="static" data-keyboard="false" ng-controller="LoginctrlCtrl" ng-init="init();">
+            <div class="modal-dialog" role="document" id="loggin">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="LoginModalLabel">Login</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-logo"><img src="images/psn-logo.png" alt="" class="img-responsive"></div>
+                        <div class="modal-form">
+                            <form name="loginfrm" novalidate ng-submit="login(user_creds);">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="Email Address or Username" ng-model="user_creds.email"  name="login_email"  autocomplete="off" required>
+                                     <span class="error " ng-show="loginfrm.login_email.$touched && loginfrm.login_email.$error.required ">Please enter your Email or username</span>
+                                     <!--<span class="error " ng-show="loginfrm.login_email.$dirty && loginfrm.login_email.$error.email ">Please enter a proper email</span>-->
+                                </div>
+                                <div class="form-group ">
+                                    <input type="password" class="form-control " id=" " placeholder="Password " ng-model="user_creds.password" name="login_password" autocomplete="off" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&_])[A-Za-z\d$@$!%*#?&_]{8,}$/" ng-minlength="8 " required>
+                                     <span class="error " ng-show="loginfrm.login_password.$error.required && loginfrm.login_password.$touched ">Please enter your password</span>
+              
+                                        <span class="error " ng-show="loginfrm.login_password.$dirty && loginfrm.login_password.$error.minlength ">Enter a minimum of 8 characters</span>
+                                         <span class="error" ng-show="loginfrm.login_password.$error.pattern && loginfrm.login_password.$dirty">Please Enter atleast one special character atleast one alphabet and one number</span>
+                                </div>
+                                <div class="form-group ">
+                                    <div class="row ">
+                                        <div class="col-sm-6 ">
+                                            <div class="custom-checkbox">
+                                                <input id="remember" type="checkbox" name="check" value="" ng-model="user_creds.check">
+                                                <label for="remember">Remember Me</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 forgot-pass ">
+                                            <a data-dismiss="modal" data-toggle="modal" href=".ForModal">Forgot your Password ?</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-block btn-default btn-lg" ng-disabled="loginfrm.$invalid">Log In</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer clearfix">
+                        <span style="margin-top:8px;display:inline-block">Don't have an account?</span>
+                        <button type="button " class="btn btn-border pull-right" data-dismiss="modal" data-toggle="modal" href=".SignupModal">Sign up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--forgotmodal-->
+        <div class="modal fade log-modal ForModal" id="" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" data-backdrop="static" data-keyboard="false" ng-controller="forgot_pass">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="LoginModalLabel">Forgot Password</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-logo"><img src="images/psn-logo.png" alt="" class="img-responsive"></div>
+                        <div class="modal-form">
+                            <form name="forgotfrm" novalidate ng-submit="forgot(forgot_creds);">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="" placeholder="Email Address or Username" ng-model="forgot_creds.email" name="forgot_email" required>
+                                     <span class="error " ng-show="forgotfrm.forgot_email.$touched && forgotfrm.forgot_email.$error.required">Please enter your Email or username</span>
+                                     <!--<span class="error " ng-show="loginfrm.login_email.$dirty && loginfrm.login_email.$error.email ">Please enter a proper email</span>-->
+                                </div>
+                              
+                             
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-block btn-default btn-lg" ng-disabled="forgotfrm.$invalid">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Signup Modal -->
+        <div class="modal fade log-modal SignupModal" id="" tabindex="-1 " role="dialog " aria-labelledby="SignupModalLabel " data-backdrop="static" data-keyboard="false" ng-controller="signupctrl" ng-init="init();">
+            <div class="modal-dialog " role="document " id="signup">
+                <div class="modal-content ">
+                    <div class="modal-header ">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title " id="SignupModalLabel ">Signup</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-form">
+                            <section class="step step-1" ng-show="nextstep">
+                                <form name="signupfrm" novalidate ng-submit="registerfirstphase(signupfrm);">
+                                    <h3 class=" setp-title">Personal Information</h3>
+                                    <div class="step-number">
+                                        <ul>
+                                            <li>1</li>
+                                            <li>2</li>
+                                        </ul>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control singnup" id="fname " placeholder="First Name " name="first_name" ng-model="firstname" ng-pattern="/^[a-zA-Z_ '\s]*$/" ng-trim="true" required>
+                                        <span class="error" ng-show="signupfrm.first_name.$invalid && signupfrm.$submitted ">Please enter your First Name</span>
+                                         <span class="error" ng-show="signupfrm.first_name.$error.pattern ">enter a only letters</span>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control singnup " id="lname " placeholder="Last Name " name="Last_name " ng-model="Lastname" ng-pattern="/^[a-zA-Z_ '\s]*$/" ng-trim="true" required>
+                                        <span class="error" ng-show="signupfrm.Last_name.$invalid && signupfrm.$submitted">Please enter your Last Name</span>
+                                         <span class="error" ng-show="signupfrm.Last_name.$error.pattern ">enter a only letters</span>
+
+
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control singnup " id=" " placeholder="User Name " name="User_name " ng-model="Username " required>
+                                        <span class="error" ng-show="signupfrm.User_name.$invalid && signupfrm.$submitted">Please enter your User Name</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="email" class="form-control singnup " id=" " placeholder="Email Address " name="email " ng-model="emailaddress " required>
+                                        <span class="error" ng-show="signupfrm.$submitted && signupfrm.email.$error.required ">Please enter your Email</span>
+                                        <span class="error" ng-show="signupfrm.email.$dirty && signupfrm.email.$error.email ">Please enter a proper email</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control singnup " id=" " placeholder="Password " name="password" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&_])[A-Za-z\d$@$!%*#?&_]{8,}$/"  ng-minlength="8" ng-model="pass" required>
+                                        <span class="error" ng-show="signupfrm.password.$error.required && signupfrm.$submitted">Please enter your password</span>
+                                
+                                        <span class="error" ng-show="signupfrm.password.$dirty && signupfrm.password.$error.minlength ">Enter a minimum of 8 characters</span>
+                                         <span class="error" ng-show="signupfrm.password.$error.pattern">Please Enter atleast one special character atleast one alphabet and one number</span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control singnup " id=" " placeholder="Confirm Password " name="c_password " match="pass " ng-minlength="8 " ng-model="cpass " required>
+                                        <span class="error" ng-show="signupfrm.c_password.$error.required && signupfrm.$submitted">Please enter your confirm password</span>
+                                        <span class="error" ng-show="signupfrm.c_password.$error.match && signupfrm.$submitted">Passwords don't match</span>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-block btn-default btn-lg ">Next</button>
+                                    </div>
+                                </form>
+                            </section>
+
+                            <section class="step step-2" ng-show="nextstep2">
+                                <form name="signupfrm2" novalidate ng-submit="registersecondphase(signup);">
+                                    <h3 class="setp-title">Business Info Needed</h3>
+                                    <div class="step-number">
+                                        <ul>
+                                            <li class="active" ng-click="showfirst();">1</li>
+                                            <li>2</li>
+                                        </ul>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-6 ">
+                                                <input type="text " class="form-control" id=" " placeholder="Business Name" name="business_name " ng-model="signup.businessName " required>
+                                                <span class="error " ng-show="signupfrm2.business_name.$invalid && signupfrm2.business_name.$touched ">Please enter your Business Name</span>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="custom-select frmm">
+                                             
+                                                    <select class="form-control" name="service_id" ng-model="signup.businesses_id" required>
+                            	                  <option value = "">Business Type</option>
+                                                  <option ng-repeat="d in business " value='{{d.id}}'>{{d.name}}</option>
+                                                  </select>
+
+                                                    <span class="error" ng-show="signupfrm2.service_id.$invalid && signupfrm2.service_id.$touched ">Select a Business Type</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row ">
+                                            <div class="col-sm-12">
+                                                <input type="text " class="form-control " id=" " placeholder="Address " name="address " ng-model="signup.address" required>
+                                                <span class="error " ng-show="signupfrm2.address.$invalid && signupfrm2.address.$touched ">Please enter your address</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row ">
+                                            <div class="col-sm-4 ">
+                                                <input type="text " class="form-control " id=" " placeholder="Suite# " ng-model="signup.suite ">
+                                            </div>
+                                            <div class="col-sm-4 ">
+                                                <input type="text " class="form-control " id=" " placeholder="City " name="city " ng-model="signup.city" ng-pattern="/^[a-zA-Z\s]*$/" ng-trim="true " required>
+                                                <span class="error " ng-show="signupfrm2.city.$invalid && signupfrm2.city.$touched ">Please enter your city</span>
+                                                 <span class="error " ng-show="signupfrm2.city.$error.pattern ">enter a proper city</span>
+                                            </div>
+                                            <div class="col-sm-4 ">
+                                                <div class="custom-select frmm ">
+                                                    <select class="form-control " name="states " ng-model="signup.state" required>
+
+                            	                   <option value = "">State</option>
+                                                   <option ng-repeat="d in usastate ">{{d.name}}</option>
+                                                     </select>
+                                                    <span class="error" ng-show="signupfrm2.states.$invalid && signupfrm2.states.$touched ">Select a state</span>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row ">
+                                            <div class="col-sm-6 ">
+                                                <input type="text " class="form-control " id=" " placeholder="Zipcode " name="zipcode " ng-model="signup.zip " required>
+                                                <span class="error " ng-show="signupfrm2.zipcode.$invalid && signupfrm2.zipcode.$touched ">Please enter your zipcode</span>
+                                            </div>
+                                            <div class="col-sm-6 ">
+                                                <input type="text " class="form-control " id=" " name="web " placeholder="Website " ng-model="signup.website"  ng-pattern="regex ">
+                                                <span class="error " ng-show="signupfrm2.web.$error.pattern ">Enter a valid website</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row ">
+                                            <div class="col-sm-6 ">
+                                                <input type="text " class="form-control " name="phone " id=" " placeholder="Office Phone Number " ng-model="signup.office_phone "  ng-keyup="signup.office_phone=phnformatter(signup.office_phone);"  maxlength="18"  ng-pattern="/^[0-9\_\-() ]*$/">
+                                                <span class="error " ng-show="signupfrm2.phone.$error.pattern ">Valid phone number is required</span>
+                                            </div>
+                                            <div class="col-sm-6 ">
+                                                <div class="custom-select ">
+                                                    <select class="form-control " name="docs " ng-model="signup.noOfDoc" required>
+                            	                <option value = "">Number Of Doctors</option>
+                                                <option ng-repeat="d in data ">{{d}}</option>
+                                                 </select>
+                                                    <span class="error " ng-show="signupfrm2.docs.$invalid && signupfrm2.docs.$touched ">Please choose no of doctors</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="row ">
+                                            <div class="col-sm-6 ">
+                                                <input type="text " class="form-control " name="salesperson " id=" " placeholder="Sales Person ID " ng-model="signup.sales_person_ID " ng-pattern="/^[a-zA-Z0-9]*$/ " ng-trim="false ">
+                                                 <span class="error " ng-show="signupfrm2.salesperson.$error.pattern ">Enter alpha numeric code</span>
+                                            </div>
+                                            <div class="col-sm-6 ">
+                                                <div class="custom-select ">
+                                                    <select class="form-control " ng-model="signup.refer_chanel">
+                                                    <option value = "">How Do You Know Us?</option>
+                                                    <option>Google</option>
+                                                    <option>Website</option>
+                                                    <option>LinkedIn</option>
+                                                    <option>Facebook</option>
+                                                    <option>Twitter</option>
+                                                    <option>Other</option>
+                                                </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="custom-checkbox" style="margin:10px 0 20px">
+                                                    <input id="agree" type="checkbox" name="check" value=" " ng-model="signup.sign_check" required>
+                                                    <label for="agree">I AGREE and confirm that I have read  and accept the  <a href="{{pdflink}}" target="_blank">Membership Agreement</a></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <button type="submit" class="btn btn-block btn-default btn-lg" ng-disabled="signupfrm2.$invalid">Submit</button>
+                                    </div>
+                                </form>
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- build:js(.) scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+        <script src="bower_components/angular-touch/angular-touch.js"></script>
+         <script type="text/javascript" src="WebJs/angularjs-dropdown-multiselect.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/ng-idle/angular-idle.js"></script>
+
+
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+        <script type="text/javascript" src="https://rawgit.com/pc035860/angular-highlightjs/master/angular-highlightjs.js"></script>
+        <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.js"></script>
+
+        <script src="bower_components/moment/moment.js"></script>
+        <!--<script src="bower_components/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>-->
+        <script src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="bower_components/Swiper/dist/js/swiper.js"></script>
+        <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+        <script src="bower_components/oclazyload/dist/ocLazyLoad.js"></script>
+        <script src="bower_components/odometer/odometer.js"></script>
+        <script src="bower_components/angular-odometer/dist/angular-odometer.js"></script>
+        <script src="bower_components/angular-messages/angular-messages.js"></script>
+        <script src="bower_components/angular-validation-match/dist/angular-validation-match.min.js"></script>
+        <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
+        <script src="bower_components/angular-aria/angular-aria.js"></script>
+        <script src="bower_components/angular-material/angular-material.js"></script>
+         <script src="bower_components/angular-payments/lib/angular-payments.min.js"></script>
+         <script src="bower_components/angular-tablesort/js/angular-tablesort.js"></script>
+        <!-- endbower -->
+        <script src="WebJs/angularconfig.js"></script>
+       
+        <script src="WebJs/config-service.js"></script>
+        <script src="WebJs/modernizr.js"></script>
+        <script src="WebJs/imgLiquid-min.js"></script>
+        <!--<script src="WebJs/odometer.min.js"></script>-->
+        <script src="WebJs/easyResponsiveTabs.js"></script>
+        <script src="WebJs/responsivetables.js"></script>
+        <script src="WebJs/masonry-docs.min.js"></script>
+        <script src="WebJs/init.js "></script>
+        <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js "></script>
+        <script src="scripts/controllers/main.js "></script>
+        <script src="scripts/controllers/signupctrl.js "></script>
+        <script src="scripts/controllers/about.js "></script>
+        <script src="scripts/services/usatest.js "></script>
+        <script src="scripts/controllers/login.js "></script>
+        <script src="scripts/controllers/myprofile.js "></script>
+        <script src="scripts/controllers/patient.js"></script>
+        <script src="scripts/controllers/memberships.js"></script>
+        <script src="scripts/controllers/report.js"></script>
+        <script src="scripts/controllers/myreports.js"></script>
+        <script src="scripts/controllers/resetpass.js"></script>
+           <script src="scripts/controllers/forgotpass.js"></script>
+        <script src="scripts/services/loader.js "></script>
+        <script src="scripts/controllers/service.js"></script>
+        <script src="scripts/controllers/testimonial.js "></script>
+        <script src="scripts/controllers/testimonial.js "></script>
+        <script src="scripts/controllers/faq.js "></script>
+        <script src="scripts/controllers/payment.js "></script>
+         <script src="scripts/controllers/story.js "></script>
+        <script src="scripts/controllers/memberships.js "></script>
+        <script src="scripts/controllers/packagelist.js "></script>
+       
+        <!-- endbuild -->
+
+    </div>
+    <!--#page-->
+</body>
+
+</html>

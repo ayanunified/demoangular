@@ -1,0 +1,59 @@
+<div class="body-scontent" ng-controller="forgotCtrl" ng-init="init()">
+  <div class="container">
+    
+    <div class="forgot-password">
+    	<div class="row">
+        	<div class="col-lg-6 col-lg-push-3">
+            	<!--<div class="profile-block" style="margin-bottom:40px">
+                	<h4> PASSWORD</h4>
+                    <form novalidate name = "ForgotForm" ng-submit="forgot(forgot,ForgotForm)">
+                    	<div class="form-group">
+                            <input type="email" class="form-control" placeholder="Enter your email" name="femail" ng-model="forgot.email" required>
+                            <span class="error" ng-show="ForgotForm.$submitted && ForgotForm.femail.$error.required">Please enter your Email</span> 
+                            <span class="error" ng-show="ForgotForm.$submitted && ForgotForm.femail.$dirty && ForgotForm.femail.$error.email">Please enter a proper email</span> 
+                        </div>
+                        <div class="form-group">
+                        	<button type="submit" class="btn btn-block btn-default btn-lg ">Submit</button>
+                        </div>
+                    </form>
+                </div>-->
+                <!-- /.profile-block -->
+                
+                <div class="profile-block">
+                  <form novalidate name="changepassfrm" ng-submit="reset_pass(reset,changepassfrm)">
+                    <h4>Reset Password</h4>
+
+
+                     <div class="form-group">
+                      <input type="email" class="form-control" id="" placeholder="Email" name="email"  ng-model="reset.email" required>
+                      <span class="error" ng-show="changepassfrm.email.$dirty && changepassfrm.email.$error.email">Enter a valid email</span>
+                      <span class="error " ng-show="changepassfrm.email.$touched && changepassfrm.email.$error.required">Please enter your Email or username</span>
+                       </div>
+                    <div class="form-group">
+                      <input type="password" class="form-control" id="" placeholder="New Password" name="change_password" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&_])[A-Za-z\d$@$!%*#?&_]{8,}$/" ng-model="reset.password" ng-minlength="8" required>
+                      <span class="error" ng-show="changepassfrm.change_password.$dirty && changepassfrm.change_password.$error.minlength">Enter at-least 8 characters </span>
+                       <span class="error" ng-show="changepassfrm.change_password.$dirty && changepassfrm.change_password.$error.pattern">Please Enter atleast one special character atleast one alphabet and one number</span>
+                       </div>
+                    <div class="form-group">
+                      <input type="password" class="form-control" id="" placeholder="Confirm Password" name="changenew_password" ng-model="reset.new_password" match="reset.password" ng-minlength="8"  ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&_])[A-Za-z\d$@$!%*#?&_]{8,}$/" ng-required="reset.password">
+                      <!--<span class="error" ng-show="changepassfrm.changenew_password.$dirty && changepassfrm.changenew_password.$error.minlength">Enter a minimum of 8 characters</span>
+                        <span class="error" ng-show="changepassfrm.changenew_password.$dirty && changepassfrm.changenew_password.$error.pattern">Please Enter atleast one special character atleast one alphabet and one number</span>-->
+                          <span class="error" ng-show="changepassfrm.changenew_password.$error.match && changepassfrm.changenew_password.$dirty">Passwords don't match</span>
+                         </div>
+                    <!--<div class="form-group">
+                      <input type="password" class="form-control" id="" placeholder="Confirm Password" name="changecon_password" ng-model="changepass.con_password" ng-minlength="8" ng-pattern="/^$|^(?=.*?)(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-_]).{8,}$/" ng-required="changepass.new_password">
+                      <span class="error" ng-show="changepassfrm.changecon_password.$dirty && changepassfrm.changecon_password.$error.minlength">Enter a minimum of 8 characters</span> 
+                      <span class="error" ng-show="changepassfrm.changecon_password.$dirty && changepassfrm.changecon_password.$error.pattern">Please Enter atleast one special character atleast one alphabet and one number</span> 
+                      </div>-->
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-block btn-default btn-lg" ng-disabled="changepassfrm.$invalid">Submit</button>
+                    </div>
+                  </form>
+                </div>
+                <!-- /.profile-block -->
+                
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+﻿<div class="responsive-tabs">
+    <div class="desktop">
+        <ul>
+            <li class="tab">
+                <a ng-click="toggle(tab, $index)" ng-class="{'active':!tab.state}">Screen Patient</a>
+            </li>
+            <li class="tab">
+                <a ng-click="toggle(tab, $index)" ng-class="{'active':!tab.state}">Report Patient</a>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <div>
+            <div class="mobile">
+                <a ng-click="toggle(tab, $index)" ng-class="{'active':!tab.state}">{{tab.title}}</a>
+            </div>
+            <div ng-class="{'off':tab.state}" class="tabs-content">
+                aaaa
+            </div>
+            <div ng-class="{'off':tab.state}" class="tabs-content">
+                bbbb
+            </div>
+        </div>
+    </div>
+</div>

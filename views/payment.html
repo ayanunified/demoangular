@@ -1,0 +1,122 @@
+<div class="body-scontent" ng-controller="PaymentCtrl">
+	<div class="container">
+    	<div class="payment-block">
+        	<div class="payment-getways">
+            	<div class="logo-holder"></div>
+            </div>
+            
+            <div class="form-block">
+            <form name="paymentForm" novalidate >
+            	<div class="form-group">
+                	<div class="row">
+                    	<div class="col-xs-12">
+                        <div class="payment-msg">
+                        	<p>Your Choosen Membership Plan <span class="time-dura">{{selected_membership_type_name}}</span> with Duration <span class="time-dura">{{selected_membership_duration}}</span> and You have to Pay <span class="amt-pay">{{selected_membership_price}}</span></p>
+                        </div>
+
+                              <input type="hidden" name="membership_id" ng-model="ccinfo.membership_id" /> 
+                              <div class="input-cc-card">  
+
+                            <div ng-show="cardlistings.length>0 && ccinfo.card_no2!='add_new'" class="custom-select" >
+                              <select class="form-control" name="card_no2" ng-model="ccinfo.card_no2" ng-required="ccinfo.card_no2!='add_new' && cardlistings.length>0" ng-change="changeDrop();">
+                                  <option disabled selected value="">Select Card</option>
+                                  <option ng-repeat="clist in cardlistings" value="{{clist.card_number}}">{{clist.card_number}}</option>
+                                  <option value="add_new">Add New One</option>
+                                </select>
+                              <span ng-show="paymentForm.submitAttempt && !paymentForm.$valid" class="error">
+                              <span ng-show="paymentForm.card_no2.$error.required" class="error">Credit card required</span>
+                              </span>
+                                
+                            </div>
+                            
+
+                            <div ng-show="cardlistings.length==0 || ccinfo.card_no2=='add_new'">
+                            <div class="form-control">
+                             <input
+                              type="text"
+                              id="card_number"
+                              name="card_no"
+                              ng-model="ccinfo.card_no"
+                              ng-required="ccinfo.card_no2=='add_new' || cardlistings.length==0"
+                              data-credit-card-type
+                              data-ng-pattern="/^[0-9]+$/"
+                              data-ng-minlength="15"
+                              maxlength="19"
+                              placeholder="Card Number" class="{{ccinfo.type}}" />
+                            </div>
+                            <span ng-show="paymentForm.submitAttempt && !paymentForm.$valid" class="error">
+                              <span ng-show="paymentForm.card_no.$error.minlength" class="error">Credit card must be 15-19 digits</span>
+                              <span ng-show="paymentForm.card_no.$error.pattern" class="error">Credit card must consist of only numbers</span>
+                              <span ng-show="paymentForm.card_no.$error.invalid" class="error">Credit card must be a valid Amex, Visa, Discover, or Master Card</span>
+                              <span ng-show="paymentForm.card_no.$error.required" class="error">Credit card required</span>
+                              </span>
+
+                               <a ng-click="ccinfo.card_no2='';ccinfo.card_no='';" ng-show="cardlistings.length>0 || ccinfo.card_no2=='add_new'" class="preset btn btn-default"><i class="fa fa-repeat"></i> Reset</a> 
+
+                              </div>
+
+                            </div>
+                            
+
+
+                            </div>
+                        </div>
+                    </div>
+              
+                <div class="form-group">
+                	<div class="row">
+                    	<div class="col-sm-4">
+                        	<label class="control-label">EXPIRY DATE</label>
+                        	<div class="custom-select">
+                            	<select class="form-control" ng-model="ccinfo.expiry_month" name="expiry_month" required>
+                                	<option disabled selected value="">Month</option>
+                                    <option ng-repeat="month in months" value="{{$index+1}}" > {{$index+1}} - {{month}} </option>
+                                </select>
+                                <span ng-show="paymentForm.submitAttempt && !paymentForm.$valid" class="error">
+                                  <span ng-show="paymentForm.expiry_month.$error.required" class="error">Expiration month required</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                        	<label class="control-label">&nbsp;</label>
+                        	<div class="custom-select">
+                            	<select class="form-control" ng-model="ccinfo.expiry_year" name="expiry_year" required>
+                                	<option disabled selected value="">Year</option>
+                                    <option ng-repeat="year in [] | range:currentYear:currentYear+13">{{year}}</option>
+                                </select>
+                                <span ng-show="paymentForm.submitAttempt && !paymentForm.$valid" class="error">
+                                  <span ng-show="paymentForm.expiry_year.$error.required" class="error">Expiration year required</span>
+                                  <span ng-show="paymentForm.expiry_month.$error.invalid" class="error">Provided expiration date is invalid</span>
+                                </span>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                        	<label class="control-label mob-space">CVV/SECURITY CODE</label>
+                        	<input type="text" class="form-control" name="card_code" ng-model="ccinfo.card_code" maxlength="4" ng-minlength="3" data-ng-pattern="/^[0-9]+$/" required>
+                            <span ng-show="paymentForm.submitAttempt && !paymentForm.$valid" class="error">
+                                  <span ng-show="paymentForm.card_code.$error.required" class="error">CVV required</span>
+                                  <span ng-show="paymentForm.card_code.$error.invalid" class="error">Provided CVV is invalid</span>
+                                  <span ng-show="paymentForm.card_code.$error.minlength" class="error">CVV must be 4 digits</span>
+                              <span ng-show="paymentForm.card_code.$error.pattern" class="error">CVV must consist of only numbers</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                	<div class="row">
+                    	<div class="col-sm-6"> <!-- ng-disabled="paymentForm.$invalid" -->
+                        	<button type="submit" ng-click="paymentForm.submitAttempt=true;save(ccinfo)" class="btn btn-block btn-success btn-lg">proceed securely</button>
+                        </div>
+
+                        <div class="col-sm-4 mob-center">
+                        	<a ng-click="cancelPayment();" class="btn btn-default btn-lg">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    

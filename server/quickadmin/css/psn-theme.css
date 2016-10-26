@@ -1,0 +1,336 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url(http://fonts.googleapis.com/css?family=Lato:400,900,700,700italic,400italic,300,300italic,900italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic);
+
+*{
+	outline:none !important;
+}
+html, body{
+	height:100%;
+}
+body{
+	background:#fff;
+	font-family:'Lato', sans-serif;
+	color:#4a4a4a;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
+	font-family: 'Roboto Condensed', sans-serif;
+}
+a, .btn-link{
+	color:#27b900;
+	transition:all ease-in-out 200ms;
+}
+a:hover, .btn-link:hover{
+	color:#4a4a4a;
+}
+.btn{
+	transition:all ease-in-out 200ms;
+}
+.btn-lg{
+	font-weight:700;
+	font-size:19px;
+	padding:15px 25px;
+	text-transform:uppercase;
+}
+.btn-default{
+	background:#4a4a4a;
+	border-color:#4a4a4a;
+	color:#fff;
+}
+.btn-default:hover{
+	background:#000;
+	border-color:#000;
+	color:#fff;
+}
+.btn-success{
+	border-color:#6bcd45;
+	background-color:#6bcd45;
+}
+.btn-success:hover{
+	border-color:#459825;
+	background-color:#459825;
+}
+
+.custom-checkbox label {
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    padding-left: 30px;
+	margin:0;
+	font-weight:400;
+	line-height:20px;
+}
+.custom-checkbox label:before {
+    content: "";
+    display: inline-block;
+ 
+    width:20px;
+    height:20px;
+ 
+    margin-right: 10px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #4a4a4a;
+}
+.custom-checkbox input[type=checkbox] {
+    display: none;
+}
+.custom-checkbox input[type=checkbox] + label:after{
+	position:absolute;
+	width:10px;
+	height:10px;
+	background:url(../images/check-icon.png) no-repeat;
+	background-size:10px auto;
+	content:"";
+	left:5px;
+	top:6px;
+	opacity:0;
+	transform:scale(1.5,1.5);
+	transition:all ease-in-out 200ms;
+}
+.custom-checkbox input[type=checkbox]:checked + label:after {
+	opacity:1;
+	transform:scale(1,1);
+}
+.psn-login-box{
+	height:100%;
+	position:relative;
+	padding:1px;
+}
+.psn-login-box:before{
+	position:absolute;
+	left:15px;
+	right:15px;
+	top:15px;
+	bottom:15px;
+	background:url(../images/banner-01.jpg) no-repeat center center;
+	background-size:cover;
+	opacity:0.8;
+	content:"";
+	z-index:1;
+}
+.psn-login-box .box-inner{
+	max-width:500px;
+	margin:190px auto 30px;
+	box-shadow:0 0 20px rgba(0,0,0,0.3);
+	position:relative;
+	z-index:2;
+}
+.psn-login-box .box-inner:before{
+	width:150px;
+	height:74px;
+	position:absolute;
+	content:"";
+	left:0;
+	right:0;
+	top:-110px;
+	margin:auto;
+	background:url(../images/psn-logo.png) no-repeat;
+	background-size:150px auto;
+}
+.psn-login-box .box-inner .panel-heading{
+	font-family: 'Roboto Condensed', sans-serif;
+	text-align:center;
+	font-size:25px;
+	text-transform:uppercase;
+	border-bottom:1px solid #f3f3f3;
+}
+.alert > ul{
+	padding:6px 0 0 13px;
+}
+
+.page-header-fixed .page-container{
+	margin-top:50px;
+}
+.admin-header{
+	position:fixed;
+	left:0;
+	right:0;
+	top:0;
+	height:50px;
+	background:#fff;
+	z-index:99;
+	box-shadow:0 0 10px rgba(0,0,0,0.5);
+	border-bottom:1px solid #d7d7d7;
+}
+.admin-header .navbar-brand{
+	padding-top:5px;
+	padding-bottom:5px;
+	background:url(../images/psn-logo.png) no-repeat center left;
+	background-size:auto 35px;
+	width:100px;
+	font-size:0;
+	margin-left:15px;
+}
+.admin-header .navbar-brand img{
+	display:none !important;
+	visibility:hidden;
+}
+.navbar-toggle{
+	background:#3d3d3d;
+	position:absolute;
+	left:110px;
+	top:-1px;
+}
+.navbar-toggle .icon-bar{
+	background:#7adc55;
+}
+
+
+.admin-header .admin-menu{
+	position:absolute;
+	right:0;
+	top:0;
+	padding-right:50px;
+	margin:15px 0;
+}
+.admin-header .admin-menu .welcome{
+	float:left;
+	padding-right:10px;
+	margin-right:10px;
+	border-right:1px solid #ccc;
+}
+.admin-header .admin-menu .welcome strong{
+	color:#7adc55;
+}
+.admin-header .admin-menu .dropdown{
+    position:absolute;
+	right:33px;
+	top:3px;
+}
+.admin-header .admin-menu .dropdown .fa-cog{
+	font-size:20px;
+}
+
+.admin-header .admin-menu .dropdown ul.dropdown-menu {
+    border-radius:4px;
+    box-shadow:none;
+    margin-top:13px;
+	margin-left:-165px;
+    width:200px;
+	background:#7adc55;
+	font:400 13px 'Lato', sans-serif;
+	border:none;
+}
+.admin-header .admin-menu .dropdown ul.dropdown-menu:before {
+    content: "";
+    border-bottom: 10px solid #7adc55;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    position: absolute;
+    top: -10px;
+    right: 16px;
+	left:auto;
+    z-index: 10;
+}
+.admin-header .admin-menu .dropdown ul.dropdown-menu:after {
+    display:none !important;
+	visibility:hidden;
+}
+.admin-header .admin-menu .dropdown-menu>li>a {
+    color:#000;
+	text-shadow:1px 1px 0 rgba(255,255,255,0.7);
+}
+.admin-header .admin-menu .dropdown-menu>li>a .fa{
+    color: #134B10;
+	margin-right: 5px;
+}
+.page-sidebar-wrapper{
+	position:relative;
+	z-index:2;
+}
+.page-content-wrapper{
+	position:relative;
+}
+
+
+.page-sidebar-menu > li.active > a{
+	background:#7adc55 !important;
+}
+.dataTables_wrapper{
+	overflow-x: auto;
+	margin-bottom:20px;
+}
+table.dataTable thead th, 
+table.dataTable thead td{
+	white-space:nowrap;
+	background:#3d3d3d;
+	border-color:#3d3d3d;
+	padding:10px 30px 10px 10px;
+	color:#fff;
+	min-width:80px;
+}
+.portlet.box > .portlet-body{
+	padding:15px;
+}
+.portlet.box.green{
+	border-color:#7adc55;
+}
+.portlet.box.green > .portlet-title{
+	background-color:#7adc55;
+}
+/*-----------09-08-2016--------------*/
+.admin-header .admin-menu .dropdown ul.dropdown-menu { background: #3d3d3d;}
+.admin-header .admin-menu .dropdown ul.dropdown-menu::before { border-bottom-color: #3d3d3d;}
+.admin-header .admin-menu .dropdown ul.dropdown-menu li > a { color: #d9d9d9; text-shadow: none;}
+
+.admin-header .admin-menu .dropdown ul.dropdown-menu li > a:hover,
+.admin-header .admin-menu .dropdown ul.dropdown-menu .active > a,
+.admin-header .admin-menu .dropdown ul.dropdown-menu .active > a:hover { background-color: #303030; color: #fff; text-shadow: none; }
+.admin-header .admin-menu .dropdown-menu > li > a .fa { color: #d9d9d9; }
+.admin-header .admin-menu .dropdown ul.dropdown-menu li.active a { background-color: #7adc55; color: #fff;}
+.patients_looks .col-sm-3 lable { margin-bottom: 2px; display: inline-block;}
+.btn.topadj18 { margin-top: 20px;}
+.detailsAli { font-size: 15px;}
+.detailsAli label { margin: 0; font-weight: bold;}
+ 
+.welcome-dashboard .dash-heading{
+	color:#4cbb22;
+	font-weight:700;
+	margin:20px 0;
+}
+.welcome-dashboard .dash-block{
+	background:#4cbb22;
+	padding:30px;
+	text-align:center;
+	font-size:60px;
+	color:#fff;
+	box-shadow:4px 4px 1px rgba(0,0,0,0.1);
+}
+.welcome-dashboard .dash-block h5{
+	margin:0 0 10px;
+	font-size:20px;
+}
+.welcome-dashboard .dash-block span{
+	text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+}
+
+
+
+
+
+
+
+
+
+
+@media only screen and (min-width:992px){
+	.page-content-wrapper:before{
+		width:235px;
+		position:fixed;
+		left:0;
+		top:0;
+		bottom:0;
+		background:#3d3d3d;
+		content:"";
+	}
+}
+
+@media only screen and (max-width:991px){
+	.navbar-toggle{
+		display:block;
+	}
+}

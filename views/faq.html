@@ -1,0 +1,68 @@
+<div class="body-scontent" ng-controller="faqCtrl" ng-init="getfaq();">
+  <div class="container">
+    <div class="cms-page">
+      <div class="faq text-center">
+        <h2 class="cms-heading">FAQ</h2>
+        <p ng-bind-html="heading"></p>
+        <div class="faq-cont text-left">
+          <div class="panel-group" id="faqAccordion">
+            <div class="panel" ng-repeat="a in content">
+              <div class="panel-heading collapsed" data-toggle="collapse" data-target="#question{{a.id}}">
+                <h4 class="panel-title" ng-cloak>{{a.question}}</h4>
+              </div>
+              <div id="question{{a.id}}" class="panel-collapse collapse"> <a href="" class="close-panel">X</a>
+                <div class="panel-body">
+                  <p class="lead">{{a.question}}</p>
+                  <p ng-bind-html="a.answer"></p>
+                </div>
+              </div>
+            </div>
+            <!--<div class="panel">
+              <div class="panel-heading collapsed" data-toggle="collapse" data-target="#question1">
+                <h4 class="panel-title">How does it work?</h4>
+              </div>
+              <div id="question1" class="panel-collapse collapse"> <a href="#" class="close-panel">X</a>
+                <div class="panel-body">
+                  <p>Medical providers purchase a membership to access the PSN database, which enables them to search the patient review list at any time, as often as they want. They can also choose to contribute to the network by reporting problematic patients, indicating how much debt is owed, what date the service was provided, the issue of complaint (i.e., non-paying, drug-seeker, etc.), and the current status of whether or not the issue has been resolved. Other PSN members can use this information to decide whether to extend their services to the patient in question.</p>
+                </div>
+              </div>
+            </div>-->
+            <!--<div class="panel">
+              <div class="panel-heading collapsed" data-toggle="collapse" data-target="#question2">
+                <h4 class="panel-title">How does the signup process work?</h4>
+              </div>
+              <div id="question2" class="panel-collapse collapse"> <a href="#" class="close-panel">X</a>
+                <div class="panel-body">
+                  <p>Signing up is easy with our simple <a href="#">online membership application</a>. All you need is an email address and a credit card.</p>
+                </div>
+              </div>
+            </div>-->
+            <!--<div class="panel">
+              <div class="panel-heading collapsed" data-toggle="collapse" data-target="#question3">
+                <h4 class="panel-title">How much does PSN cost?</h4>
+              </div>
+              <div id="question3" class="panel-collapse collapse"> <a href="#" class="close-panel">X</a>
+                <div class="panel-body">
+                  <p>Users can begin with a 3-month free trial <a href="#">membership</a> to test out PSN for themselves. Packages begin at $199/month, $2000/year, and $8000 for a lifetime membership.</p>
+                </div>
+              </div>
+            </div>-->
+            <!--<div class="panel">
+              <div class="panel-heading collapsed" data-toggle="collapse" data-target="#question4">
+                <h4 class="panel-title">What about the patient’s privacy?</h4>
+              </div>
+              <div id="question4" class="panel-collapse collapse"> <a href="#" class="close-panel">X</a>
+                <div class="panel-body">
+                  <p>PSN is a HIPPA compliant website. The medical records of the patient cannot be shared on the database. The only information that is listed is a failure to pay bills, how much is owned, the date of the service, other undesirable behaviors (i.e., drug-seeking), and the current status of the individual with the clinic.</p>
+                </div>
+              </div>
+            </div>-->
+          </div>
+          <!--/panel-group--> 
+        </div>
+      </div>
+      <!--/.faq--> 
+    </div>
+  </div>
+</div>
+<!--/.body-scontent-->

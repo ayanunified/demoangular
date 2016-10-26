@@ -1,0 +1,157 @@
+<div class="body-scontent" ng-controller="MyprofileCtrl" ng-init="init();">
+    	<div class="container">
+        	<div class="my-profile">
+            <form novalidate name="profileForm" ng-submit="updateProfiledata(profile);">
+            	<div class="row">
+                    <div class="col-md-6">
+                        <div class="profile-block">
+                            <h4>personal information</h4>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="First Name" name="first_name" ng-model="profile.first_name" ng-pattern="/^[a-zA-Z_ '\s]*$/" ng-trim="true" ng-readonly="!clicked_fname" ng-click="clicked_fname=true" >
+                                <span class="error" ng-show="profileForm.first_name.$error.pattern ">enter a only letters</span>
+                                
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="" placeholder="Last Name" name="last_name" ng-model="profile.last_name" ng-pattern="/^[a-zA-Z_ '\s]*$/" ng-trim="true" ng-readonly="!clicked_lname" ng-click="clicked_lname=true" >
+                                <span class="error" ng-show="profileForm.last_name.$error.pattern ">enter a only letters</span>
+                                
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="" placeholder="Username" name="username" ng-model="profile.username"  disabled>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="" placeholder="Email" name="email" ng-model="profile.email" disabled>
+                            </div>
+                        </div>
+                        <div class="profile-block">
+                            <h4>change password</h4>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="" placeholder="Current Password"  name="password" ng-model="profile.password"  ng-minlength="8" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&_])[A-Za-z\d$@$!%*#?&_]{8,}$/" ng-readonly="!clicked_Ppass" ng-click="clicked_Ppass=true" >
+                                <span class="error" ng-show="profileForm.$dirty && profileForm.password.$error.minlength ">Enter a minimum of 8 characters</span>
+                                     <span class="error" ng-show="profileForm.password.$error.pattern">Please Enter atleast one special character atleast one alphabet and one number</span>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="" placeholder="New Password" name="new_password" ng-model="profile.new_password" ng-minlength="8" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&_])[A-Za-z\d$@$!%*#?&_]{8,}$/" ng-required="profile.password" ng-readonly="!clicked_Ppassnew" ng-click="clicked_Ppassnew=true" >
+                                  <span class="error" ng-show="profileForm.new_password.$dirty && profileForm.new_password.$error.minlength">Enter a minimum of 8 characters</span>
+                                      <span class="error" ng-show="profileForm.new_password.$error.pattern">Please Enter atleast one special character atleast one alphabet and one number</span>
+                                 
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="" placeholder="Confirm Password"  name="con_password" ng-model="profile.con_password" ng-minlength="8" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&_])[A-Za-z\d$@$!%*#?&_]{8,}$/" ng-required="profile.new_password" ng-readonly="!clicked_Ppasscon" ng-click="clicked_Ppasscon=true" >
+                            
+                                   <span class="error" ng-show="profileForm.con_password.$dirty && profileForm.con_password.$error.minlength ">Enter a minimum of 8 characters</span>
+                                      <span class="error" ng-show="profileForm.con_password.$error.pattern">Please Enter atleast one special character atleast one alphabet and one number</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-block">
+                        <h4>business information</h4>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <input type="text" class="form-control" id="" placeholder="Business Name" name="businessName" ng-model="profile.businessName" ng-readonly="!clicked_bname" ng-click="clicked_bname=true" >
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="custom-select">
+                                        <select class="form-control" name="businesses_id" ng-model="profile.businesses_id" ng-readonly="!clicked_btype" ng-click="clicked_btype=true" >
+                                            <option value = "">Business Type</option>
+                                            <option ng-repeat="d in business" value="{{d.id}}" ng-selected="profile.businesses_id == d.id">{{d.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <input type="text" class="form-control" id="" placeholder="Address" name="address" ng-model="profile.address" ng-readonly="!clicked_Padd" ng-click="clicked_Padd=true" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <input type="text" class="form-control" id="" placeholder="Suite#" name="suite" ng-model="profile.suite" ng-readonly="!clicked_Psuite"" ng-click="clicked_Psuite=true">
+                                </div>
+                              
+                                <div class="col-xs-4">
+                                    <input type="text" class="form-control" id="" placeholder="City" name="city" ng-model="profile.city" ng-pattern="/^[a-zA-Z\s]*$/" ng-trim="true " ng-readonly="!clicked_Pcity" ng-click="clicked_Pcity=true" >
+                                    <span class="error " ng-show="profileForm.city.$error.pattern ">enter a proper city</span>
+                                </div>
+
+                                  <div class="col-xs-4">
+                                    <div class="custom-select">
+                                        <select class="form-control" name="state" ng-model="profile.state" ng-readonly="!clicked_Pstate"" ng-click="clicked_Pstate=true" >
+                                       <option value = "">State</option>
+                                       <option ng-repeat="d in usastate" ng-selected="profile.state == d.name">{{d.name}}</option>
+                                         </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <input type="text" class="form-control" id="" placeholder="Zipcode" name="zip" ng-model="profile.zip" ng-pattern="/^[0-9\_\-() ]*$/" ng-readonly="!clicked_Pzip" ng-click="clicked_Pzip=true" >
+                                       <span class="error " ng-show="profileForm.zip.$error.pattern ">valid zip is required</span>
+                                </div>
+                                <div class="col-xs-6">
+                                    <input type="text" class="form-control" id="" placeholder="Website" name="website" ng-model="profile.website" ng-pattern="regex" ng-readonly="!clicked_Pweb" ng-click="clicked_Pweb=true" >
+                                     <span class="error " ng-show="profileForm.website.$error.pattern ">Enter a valid website</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <input type="text" class="form-control" id="" placeholder="Office Phone Number" name="office_phone"  ng-model="profile.office_phone" ng-keyup="profile.office_phone=phnformatter(profile.office_phone);"  maxlength="18"  ng-pattern="/^[0-9\_\-() ]*$/" ng-readonly="!clicked_Pphn" ng-click="clicked_Pphn=true" >
+                                    <span class="error " ng-show="profileForm.office_phone.$error.pattern ">Valid phone number is required</span>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="custom-select">
+                                       <select class="form-control" name="noOfDoc" ng-model="profile.noOfDoc" ng-readonly="!clicked_Pnoofdoc" ng-click="clicked_Pnoofdoc=true" >
+                                        <option value = "">Number Of Doctors</option>
+                                        <option ng-repeat="d in data" ng-selected="profile.noOfDoc == d">{{d}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <input type="text" class="form-control" id="" placeholder="Sales Person ID" name="sales_person_id" ng-model="profile.sales_person_id" ng-pattern="/^[a-zA-Z0-9]*$/" ng-trim="false" ng-readonly="!clicked_Psalesid"" ng-click="clicked_Psalesid=true" >
+                                     <span class="error " ng-show="profileForm.sales_person_id.$error.pattern ">Enter alpha numeric code</span>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="custom-select">
+                                        <select class="form-control" name="refer_chanel" ng-model="profile.refer_chanel" ng-readonly="!clicked_Prefer"" ng-click="clicked_Prefer=true" >
+                                            <option value="">How Do You Know Us?</option>
+                                            <option>Google</option>
+                                            <option>Website</option>
+                                            <option>LinkedIn</option>
+                                            <option>Facebook</option>
+                                            <option>Twitter</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-push-6">
+                                    <button type="submit" class="btn btn-block btn-default btn-lg" ng-disabled="profileForm.$invalid" ng-readonly="!clicked_Ppress" ng-click="clicked_Ppress=true">update</button>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.body-scontent-->
+    

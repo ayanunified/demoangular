@@ -1,0 +1,55 @@
+@charset "utf-8";
+/* CSS Document */
+
+table.responsive span[data-type="responsive"] {
+	display: none;
+}
+
+@media only screen and (max-width:1199px) {
+table.responsive span[data-type="responsive"] {
+	display: inline-block;
+	width: 45%;
+	color: #f1155a;
+	vertical-align: top;
+	font-weight: 600;
+}
+.result-table table.responsive span[data-type="responsive"] {
+	width: 35%;
+	float: left;
+}
+.result-table table.responsive div[data-type="content"] {
+	overflow: hidden;
+}
+table.responsive, table.responsive thead, table.responsive tbody, table.responsive th, table.responsive td, table.responsive tr {
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+	display: block;
+}
+html.ie9 table.responsive, html.ie9 table.responsive thead, html.ie9 table.responsive tbody, html.ie9 table.responsive th, html.ie9 table.responsive td, html.ie9 table.responsive tr {
+	float: left;
+	clear: both;
+	width: 100%
+}
+.status-table table tr{
+	padding-bottom:10px;
+}
+.status-table table tr td{
+	border: none;
+	width: 100% !important;
+	text-align: left;
+	padding:10px 15px;
+}
+table.responsive th {
+	display: none !important;
+}
+.status-table table .dis-tbl{
+	display:inline-block !important;
+	width:auto !important;
+}
+.status-table table .dis-tbl-cell{
+	display:inline !important;
+	height:auto !important;
+}
+
+}

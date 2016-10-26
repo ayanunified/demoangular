@@ -1,0 +1,102 @@
+    <div class="body-scontent" ng-controller="MembershipsCtrl">
+    	<div class="container">
+        	<div class="membership-plans">
+            	<div class="price-table">
+                    <div class="table-blocks">
+                    
+                        <div ng-show="current_membership_id!=1 && current_status=='Active'" class="single-table" ng-repeat="sub in subsrciptions" ng-class="{'trial':$index==0,'monthly':$index==1,'yearly':$index==2,'lifetime':$index==3,'disabled':sub.id<current_membership_id}">
+                            <div class="inner-table">
+                                <div class="data-info">
+                                    <h3>{{sub.type_name}}</h3>
+                                    <div class="price">{{sub.subheading}}</div>
+                                    <div class="info-list" ng-bind-html="sub.description">
+                                        {{sub.description}}
+                                    </div>
+                                    <hr>
+                                    <button type="button" ng-click="goPayment(sub.id,sub.duration,sub.price,sub.type_name);" class="btn btn-block">select</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-show="current_membership_id==1 || current_status=='Inactive'" class="single-table" ng-repeat="sub in subsrciptions" ng-class="{'trial':$index==0,'monthly':$index==1,'yearly':$index==2,'lifetime':$index==3,'disabled':$index==0}">
+                            <div class="inner-table">
+                                <div class="data-info">
+                                    <h3>{{sub.type_name}}</h3>
+                                    <div class="price">{{sub.subheading}}</div>
+                                    <div class="info-list" ng-bind-html="sub.description">
+                                        {{sub.description}}
+                                    </div>
+                                    <hr>
+                                    <button type="button" ng-click="goPayment(sub.id,sub.duration,sub.price,sub.type_name);" class="btn btn-block">select</button>
+                                </div>
+                            </div>
+                        </div>    
+
+
+
+                        <!--// Trial -->
+                        
+                        <!-- <div class="single-table monthly disabled">
+                            <div class="inner-table">
+                                <div class="data-info">
+                                    <h3>Monthly</h3>
+                                    <div class="price">$199</div>
+                                    <div class="info-list">
+                                        <ul>
+                                            <li>Report Patient</li>
+                                            <li>View Patient</li>
+                                            <li>Search Patient</li>
+                                            <li>Account Setting</li>
+                                        </ul>
+                                    </div>
+                                    <hr>
+                                    <button type="button" class="btn btn-block">select</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="single-table yearly activated">
+                            <div class="inner-table">
+                                <div class="data-info">
+                                    <h3>Yearly</h3>
+                                    <div class="price">$2000</div>
+                                    <div class="info-list">
+                                        <ul>
+                                            <li>Report Patient</li>
+                                            <li>View Patient</li>
+                                            <li>Search Patient</li>
+                                            <li>Account Setting</li>
+                                        </ul>
+                                    </div>
+                                    <hr>
+                                    <button type="button" class="btn btn-block">select</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="single-table lifetime">
+                            <div class="inner-table">
+                                <div class="data-info">
+                                    <h3>Lifetime</h3>
+                                    <div class="price">$8000</div>
+                                    <div class="info-list">
+                                        <ul>
+                                            <li>Report Patient</li>
+                                            <li>View Patient</li>
+                                            <li>Search Patient</li>
+                                            <li>Account Setting</li>
+                                        </ul>
+                                    </div>
+                                    <hr>
+                                    <button type="button" class="btn btn-block">select</button>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                </div>
+                <!--/.price-table-->
+            </div>
+        </div>
+    </div>
+    <!--/.body-scontent-->

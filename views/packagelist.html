@@ -1,0 +1,56 @@
+<div class="body-scontent" ng-controller="PackageListCtrl" >
+    	<div class="container">
+        	<div class="package-list">
+            	<div class="tab-heading">transaction history</div>
+                <div class="package-list-table block-table">
+                    <table class="table responsive">
+                        <thead>
+                        <tr>
+                            <th width="20%"><span class=""></span>Transaction ID</th>
+                            <th width="15%" class="text-center"><span class=""></span>Transaction Date</th>
+                            <th width="15%" class="text-center"><span class=""></span>Package Name</th>
+                            <th width="15%" class="text-center"><span class=""></span>Package Price</th>
+                            <th width="20%" class="text-center"><span class=""></span>Valid Till</th>
+                            <th width="15%" class="text-center"><span class=""></span>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="tran in transactions" ng-cloak>
+                                <td width="20%">{{tran.transaction_id}}</td>
+                                <td width="15%" class="text-center">{{tran.created_at}}</td>
+                                <td width="15%" class="text-center"><span class="text-red">{{tran.memberships.type_name}}</span></td>
+                                <td width="15%" class="text-center"><span class="">{{tran.memberships.price}}</span></td>
+                                <td width="20%" class="text-center">{{tran.valid_till}}</td>
+                                <td width="15%" class="text-center"><a ng-if="$index==0" ng-click="goPayment(tran.pack_taken,tran.memberships.duration,tran.memberships.price,tran.memberships.type_name);" class="btn btn-renew">renew</a></td>
+                            </tr>
+                            <tr ng-show="transactions.length==0"><td colspan="5">{{recordMsg}}</td></tr>
+                            <!--<tr>
+                                <td width="25%">GHM1245896789546</td>
+                                <td width="20%" class="text-center">07/02/2016</td>
+                                <td width="20%" class="text-center"><span class="text-green">Yearly</span></td>
+                                <td width="20%" class="text-center">08/02/2017</td>
+                                <td width="15%" class="text-center"></td>
+                            </tr>
+                            <tr>
+                                <td width="25%">GHM1245896789546</td>
+                                <td width="20%" class="text-center">07/02/2016</td>
+                                <td width="20%" class="text-center"><span class="text-green">Yearly</span></td>
+                                <td width="20%" class="text-center">08/02/2017</td>
+                                <td width="15%" class="text-center"></td>
+                            </tr>
+                            <tr>
+                                <td width="25%">GHM1245896789546</td>
+                                <td width="20%" class="text-center">07/02/2016</td>
+                                <td width="20%" class="text-center"><span class="text-blue">Yearly</span></td>
+                                <td width="20%" class="text-center">08/02/2017</td>
+                                <td width="15%" class="text-center"></td>
+                            </tr>-->
+                        </tbody>
+                    </table>
+                    <div class="upgrade-btn-cont text-center">
+                    	<a ng-click="goMembership();" class="btn btn-default btn-lg">upgrade membership plan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

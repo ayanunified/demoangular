@@ -1,0 +1,109 @@
+.form-control.ng-invalid.ng-touched{
+
+	border: 1px solid red;
+
+}
+
+.form-control.ng-dirty.ng-invalid{
+
+	border: 1px solid red;
+}
+
+.frmm.ng-invalid.ng-touched{
+
+	border: 1px solid red;
+    color: red;
+}
+
+.cont{
+
+     min-height: 400px;
+
+}
+.frmm.ng-dirty.ng-touched{
+
+	border: 1px solid red;
+    color: red;
+}
+.error{
+
+	color: red;
+}
+
+.frmm.error{
+
+	color: red;
+}
+
+#fname{
+text-transform: capitalize;
+}
+
+#lname{
+text-transform: capitalize;
+}
+
+md-backdrop.md-opaque {
+    opacity: .48 !important;
+	height: 100% !important;
+}
+
+div#demo {
+    padding:10px;
+}
+.tab-accordion-header, .tab-accordion-header.active {
+    display:none;
+}
+@media(max-width: 400px) {
+    ul.nav-tabs {
+        display:none;
+    }
+    .tab-accordion-header {
+        background-color: #666666;
+        color: #ffffff;
+        padding: 10px;
+        width: 100%;
+        margin: 1px 0;
+        display:block;
+    }
+    .tab-accordion-header.active {
+        display:block;
+        background-color:#dd3333;
+    }
+    .tab-content {
+        border-top: 0px transparent none;
+    }
+    
+    /**
+    Add this to make them always open
+    .tab-content > .tab-pane {
+        display:block;
+    }
+    */
+}
+
+.hell{
+
+    float: right;
+    margin-right: 10px;
+    transition:none;
+    
+}
+
+.no-transition{
+
+      transition:none !important;
+    
+}
+
+body {padding-right: 0px !important}
+
+.loginheader 
+{
+    display: none;
+}
+
+.showloginheader
+{
+    display:block !important;
+}
